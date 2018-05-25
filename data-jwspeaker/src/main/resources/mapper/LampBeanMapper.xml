@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sealight.jwspeaker.mapper.LampBeanMapper" >
+  <resultMap id="BaseResultMap" type="com.sealight.jwspeaker.entity.LampBean" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="brand" property="brand" jdbcType="VARCHAR" />
+    <result column="model" property="model" jdbcType="VARCHAR" />
+    <result column="year" property="year" jdbcType="VARCHAR" />
+    <result column="lamp_name" property="lampName" jdbcType="VARCHAR" />
+    <result column="lamp_desc" property="lampDesc" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, brand, model, `year`, lamp_name, lamp_desc
+  </sql>
+  <insert id="insert" parameterType="com.sealight.jwspeaker.entity.LampBean" >
+    insert into t_lamps (id, brand, model,
+      year, lamp_name, lamp_desc
+      )
+    values (#{id,jdbcType=INTEGER}, #{brand,jdbcType=VARCHAR}, #{model,jdbcType=VARCHAR}, 
+      #{year,jdbcType=VARCHAR}, #{lampName,jdbcType=VARCHAR}, #{lampDesc,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sealight.jwspeaker.entity.LampBean" >
+    insert into t_lamps
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="brand != null" >
+        brand,
+      </if>
+      <if test="model != null" >
+        model,
+      </if>
+      <if test="year != null" >
+        year,
+      </if>
+      <if test="lampName != null" >
+        lamp_name,
+      </if>
+      <if test="lampDesc != null" >
+        lamp_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="brand != null" >
+        #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="model != null" >
+        #{model,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="lampName != null" >
+        #{lampName,jdbcType=VARCHAR},
+      </if>
+      <if test="lampDesc != null" >
+        #{lampDesc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="findByBrand" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_lamps where brand = #{brand,jdbcType=VARCHAR}
+  </select>
+</mapper>

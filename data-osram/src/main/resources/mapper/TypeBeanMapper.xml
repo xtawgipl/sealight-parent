@@ -1,0 +1,596 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sealight.mapper.TypeBeanMapper">
+  <resultMap id="BaseResultMap" type="com.sealight.entity.TypeBean">
+    <id column="type_id" jdbcType="INTEGER" property="typeId" />
+    <result column="model_id" jdbcType="INTEGER" property="modelId" />
+    <result column="type_from" jdbcType="VARCHAR" property="typeFrom" />
+    <result column="type_from_year" jdbcType="VARCHAR" property="typeFromYear" />
+    <result column="type_from_month" jdbcType="VARCHAR" property="typeFromMonth" />
+    <result column="type_to" jdbcType="VARCHAR" property="typeTo" />
+    <result column="type_to_year" jdbcType="VARCHAR" property="typeToYear" />
+    <result column="type_to_month" jdbcType="VARCHAR" property="typeToMonth" />
+    <result column="type_kw" jdbcType="VARCHAR" property="typeKw" />
+    <result column="type_axles" jdbcType="VARCHAR" property="typeAxles" />
+    <result column="type_tonnage" jdbcType="VARCHAR" property="typeTonnage" />
+    <result column="variant_id" jdbcType="INTEGER" property="variantId" />
+    <result column="type_name" jdbcType="VARCHAR" property="typeName" />
+    <result column="kba" jdbcType="VARCHAR" property="kba" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    type_id, model_id, type_from, type_from_year, type_from_month, type_to, type_to_year, 
+    type_to_month, type_kw, type_axles, type_tonnage, variant_id, type_name, kba
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from t_type
+    where type_id = #{typeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_type
+    where type_id = #{typeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sealight.entity.TypeBean">
+    insert into t_type (type_id, model_id, type_from, 
+      type_from_year, type_from_month, type_to, 
+      type_to_year, type_to_month, type_kw, 
+      type_axles, type_tonnage, variant_id, 
+      type_name, kba)
+    values (#{typeId,jdbcType=INTEGER}, #{modelId,jdbcType=INTEGER}, #{typeFrom,jdbcType=VARCHAR}, 
+      #{typeFromYear,jdbcType=VARCHAR}, #{typeFromMonth,jdbcType=VARCHAR}, #{typeTo,jdbcType=VARCHAR}, 
+      #{typeToYear,jdbcType=VARCHAR}, #{typeToMonth,jdbcType=VARCHAR}, #{typeKw,jdbcType=VARCHAR}, 
+      #{typeAxles,jdbcType=VARCHAR}, #{typeTonnage,jdbcType=VARCHAR}, #{variantId,jdbcType=INTEGER}, 
+      #{typeName,jdbcType=VARCHAR}, #{kba,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sealight.entity.TypeBean">
+    insert into t_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="typeId != null">
+        type_id,
+      </if>
+      <if test="modelId != null">
+        model_id,
+      </if>
+      <if test="typeFrom != null">
+        type_from,
+      </if>
+      <if test="typeFromYear != null">
+        type_from_year,
+      </if>
+      <if test="typeFromMonth != null">
+        type_from_month,
+      </if>
+      <if test="typeTo != null">
+        type_to,
+      </if>
+      <if test="typeToYear != null">
+        type_to_year,
+      </if>
+      <if test="typeToMonth != null">
+        type_to_month,
+      </if>
+      <if test="typeKw != null">
+        type_kw,
+      </if>
+      <if test="typeAxles != null">
+        type_axles,
+      </if>
+      <if test="typeTonnage != null">
+        type_tonnage,
+      </if>
+      <if test="variantId != null">
+        variant_id,
+      </if>
+      <if test="typeName != null">
+        type_name,
+      </if>
+      <if test="kba != null">
+        kba,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="typeId != null">
+        #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="modelId != null">
+        #{modelId,jdbcType=INTEGER},
+      </if>
+      <if test="typeFrom != null">
+        #{typeFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="typeFromYear != null">
+        #{typeFromYear,jdbcType=VARCHAR},
+      </if>
+      <if test="typeFromMonth != null">
+        #{typeFromMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="typeTo != null">
+        #{typeTo,jdbcType=VARCHAR},
+      </if>
+      <if test="typeToYear != null">
+        #{typeToYear,jdbcType=VARCHAR},
+      </if>
+      <if test="typeToMonth != null">
+        #{typeToMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="typeKw != null">
+        #{typeKw,jdbcType=VARCHAR},
+      </if>
+      <if test="typeAxles != null">
+        #{typeAxles,jdbcType=VARCHAR},
+      </if>
+      <if test="typeTonnage != null">
+        #{typeTonnage,jdbcType=VARCHAR},
+      </if>
+      <if test="variantId != null">
+        #{variantId,jdbcType=INTEGER},
+      </if>
+      <if test="typeName != null">
+        #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="kba != null">
+        #{kba,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sealight.entity.TypeBean">
+    update t_type
+    <set>
+      <if test="modelId != null">
+        model_id = #{modelId,jdbcType=INTEGER},
+      </if>
+      <if test="typeFrom != null">
+        type_from = #{typeFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="typeFromYear != null">
+        type_from_year = #{typeFromYear,jdbcType=VARCHAR},
+      </if>
+      <if test="typeFromMonth != null">
+        type_from_month = #{typeFromMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="typeTo != null">
+        type_to = #{typeTo,jdbcType=VARCHAR},
+      </if>
+      <if test="typeToYear != null">
+        type_to_year = #{typeToYear,jdbcType=VARCHAR},
+      </if>
+      <if test="typeToMonth != null">
+        type_to_month = #{typeToMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="typeKw != null">
+        type_kw = #{typeKw,jdbcType=VARCHAR},
+      </if>
+      <if test="typeAxles != null">
+        type_axles = #{typeAxles,jdbcType=VARCHAR},
+      </if>
+      <if test="typeTonnage != null">
+        type_tonnage = #{typeTonnage,jdbcType=VARCHAR},
+      </if>
+      <if test="variantId != null">
+        variant_id = #{variantId,jdbcType=INTEGER},
+      </if>
+      <if test="typeName != null">
+        type_name = #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="kba != null">
+        kba = #{kba,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where type_id = #{typeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sealight.entity.TypeBean">
+    update t_type
+    set model_id = #{modelId,jdbcType=INTEGER},
+      type_from = #{typeFrom,jdbcType=VARCHAR},
+      type_from_year = #{typeFromYear,jdbcType=VARCHAR},
+      type_from_month = #{typeFromMonth,jdbcType=VARCHAR},
+      type_to = #{typeTo,jdbcType=VARCHAR},
+      type_to_year = #{typeToYear,jdbcType=VARCHAR},
+      type_to_month = #{typeToMonth,jdbcType=VARCHAR},
+      type_kw = #{typeKw,jdbcType=VARCHAR},
+      type_axles = #{typeAxles,jdbcType=VARCHAR},
+      type_tonnage = #{typeTonnage,jdbcType=VARCHAR},
+      variant_id = #{variantId,jdbcType=INTEGER},
+      type_name = #{typeName,jdbcType=VARCHAR},
+      kba = #{kba,jdbcType=VARCHAR}
+    where type_id = #{typeId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.sealight.entity.TypeBean">
+    <id column="type_id" jdbcType="INTEGER" property="typeId" />
+    <result column="model_id" jdbcType="INTEGER" property="modelId" />
+    <result column="type_from" jdbcType="VARCHAR" property="typeFrom" />
+    <result column="type_from_year" jdbcType="VARCHAR" property="typeFromYear" />
+    <result column="type_from_month" jdbcType="VARCHAR" property="typeFromMonth" />
+    <result column="type_to" jdbcType="VARCHAR" property="typeTo" />
+    <result column="type_to_year" jdbcType="VARCHAR" property="typeToYear" />
+    <result column="type_to_month" jdbcType="VARCHAR" property="typeToMonth" />
+    <result column="type_kw" jdbcType="VARCHAR" property="typeKw" />
+    <result column="type_axles" jdbcType="VARCHAR" property="typeAxles" />
+    <result column="type_tonnage" jdbcType="VARCHAR" property="typeTonnage" />
+    <result column="variant_id" jdbcType="INTEGER" property="variantId" />
+    <result column="type_name" jdbcType="VARCHAR" property="typeName" />
+    <result column="kba" jdbcType="VARCHAR" property="kba" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    type_id, model_id, type_from, type_from_year, type_from_month, type_to, type_to_year, 
+    type_to_month, type_kw, type_axles, type_tonnage, variant_id, type_name, kba
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from t_type
+    where type_id = #{typeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_type
+    where type_id = #{typeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sealight.entity.TypeBean">
+    insert into t_type (type_id, model_id, type_from, 
+      type_from_year, type_from_month, type_to, 
+      type_to_year, type_to_month, type_kw, 
+      type_axles, type_tonnage, variant_id, 
+      type_name, kba)
+    values (#{typeId,jdbcType=INTEGER}, #{modelId,jdbcType=INTEGER}, #{typeFrom,jdbcType=VARCHAR}, 
+      #{typeFromYear,jdbcType=VARCHAR}, #{typeFromMonth,jdbcType=VARCHAR}, #{typeTo,jdbcType=VARCHAR}, 
+      #{typeToYear,jdbcType=VARCHAR}, #{typeToMonth,jdbcType=VARCHAR}, #{typeKw,jdbcType=VARCHAR}, 
+      #{typeAxles,jdbcType=VARCHAR}, #{typeTonnage,jdbcType=VARCHAR}, #{variantId,jdbcType=INTEGER}, 
+      #{typeName,jdbcType=VARCHAR}, #{kba,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sealight.entity.TypeBean">
+    insert into t_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="typeId != null">
+        type_id,
+      </if>
+      <if test="modelId != null">
+        model_id,
+      </if>
+      <if test="typeFrom != null">
+        type_from,
+      </if>
+      <if test="typeFromYear != null">
+        type_from_year,
+      </if>
+      <if test="typeFromMonth != null">
+        type_from_month,
+      </if>
+      <if test="typeTo != null">
+        type_to,
+      </if>
+      <if test="typeToYear != null">
+        type_to_year,
+      </if>
+      <if test="typeToMonth != null">
+        type_to_month,
+      </if>
+      <if test="typeKw != null">
+        type_kw,
+      </if>
+      <if test="typeAxles != null">
+        type_axles,
+      </if>
+      <if test="typeTonnage != null">
+        type_tonnage,
+      </if>
+      <if test="variantId != null">
+        variant_id,
+      </if>
+      <if test="typeName != null">
+        type_name,
+      </if>
+      <if test="kba != null">
+        kba,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="typeId != null">
+        #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="modelId != null">
+        #{modelId,jdbcType=INTEGER},
+      </if>
+      <if test="typeFrom != null">
+        #{typeFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="typeFromYear != null">
+        #{typeFromYear,jdbcType=VARCHAR},
+      </if>
+      <if test="typeFromMonth != null">
+        #{typeFromMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="typeTo != null">
+        #{typeTo,jdbcType=VARCHAR},
+      </if>
+      <if test="typeToYear != null">
+        #{typeToYear,jdbcType=VARCHAR},
+      </if>
+      <if test="typeToMonth != null">
+        #{typeToMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="typeKw != null">
+        #{typeKw,jdbcType=VARCHAR},
+      </if>
+      <if test="typeAxles != null">
+        #{typeAxles,jdbcType=VARCHAR},
+      </if>
+      <if test="typeTonnage != null">
+        #{typeTonnage,jdbcType=VARCHAR},
+      </if>
+      <if test="variantId != null">
+        #{variantId,jdbcType=INTEGER},
+      </if>
+      <if test="typeName != null">
+        #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="kba != null">
+        #{kba,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sealight.entity.TypeBean">
+    update t_type
+    <set>
+      <if test="modelId != null">
+        model_id = #{modelId,jdbcType=INTEGER},
+      </if>
+      <if test="typeFrom != null">
+        type_from = #{typeFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="typeFromYear != null">
+        type_from_year = #{typeFromYear,jdbcType=VARCHAR},
+      </if>
+      <if test="typeFromMonth != null">
+        type_from_month = #{typeFromMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="typeTo != null">
+        type_to = #{typeTo,jdbcType=VARCHAR},
+      </if>
+      <if test="typeToYear != null">
+        type_to_year = #{typeToYear,jdbcType=VARCHAR},
+      </if>
+      <if test="typeToMonth != null">
+        type_to_month = #{typeToMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="typeKw != null">
+        type_kw = #{typeKw,jdbcType=VARCHAR},
+      </if>
+      <if test="typeAxles != null">
+        type_axles = #{typeAxles,jdbcType=VARCHAR},
+      </if>
+      <if test="typeTonnage != null">
+        type_tonnage = #{typeTonnage,jdbcType=VARCHAR},
+      </if>
+      <if test="variantId != null">
+        variant_id = #{variantId,jdbcType=INTEGER},
+      </if>
+      <if test="typeName != null">
+        type_name = #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="kba != null">
+        kba = #{kba,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where type_id = #{typeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sealight.entity.TypeBean">
+    update t_type
+    set model_id = #{modelId,jdbcType=INTEGER},
+      type_from = #{typeFrom,jdbcType=VARCHAR},
+      type_from_year = #{typeFromYear,jdbcType=VARCHAR},
+      type_from_month = #{typeFromMonth,jdbcType=VARCHAR},
+      type_to = #{typeTo,jdbcType=VARCHAR},
+      type_to_year = #{typeToYear,jdbcType=VARCHAR},
+      type_to_month = #{typeToMonth,jdbcType=VARCHAR},
+      type_kw = #{typeKw,jdbcType=VARCHAR},
+      type_axles = #{typeAxles,jdbcType=VARCHAR},
+      type_tonnage = #{typeTonnage,jdbcType=VARCHAR},
+      variant_id = #{variantId,jdbcType=INTEGER},
+      type_name = #{typeName,jdbcType=VARCHAR},
+      kba = #{kba,jdbcType=VARCHAR}
+    where type_id = #{typeId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.osram.osram.entity.TypeBean">
+    <id column="type_id" jdbcType="INTEGER" property="typeId" />
+    <result column="model_id" jdbcType="INTEGER" property="modelId" />
+    <result column="type_from" jdbcType="VARCHAR" property="typeFrom" />
+    <result column="type_from_year" jdbcType="VARCHAR" property="typeFromYear" />
+    <result column="type_from_month" jdbcType="VARCHAR" property="typeFromMonth" />
+    <result column="type_to" jdbcType="VARCHAR" property="typeTo" />
+    <result column="type_to_year" jdbcType="VARCHAR" property="typeToYear" />
+    <result column="type_to_month" jdbcType="VARCHAR" property="typeToMonth" />
+    <result column="type_kw" jdbcType="VARCHAR" property="typeKw" />
+    <result column="type_axles" jdbcType="VARCHAR" property="typeAxles" />
+    <result column="type_tonnage" jdbcType="VARCHAR" property="typeTonnage" />
+    <result column="variant_id" jdbcType="INTEGER" property="variantId" />
+    <result column="type_name" jdbcType="VARCHAR" property="typeName" />
+    <result column="kba" jdbcType="VARCHAR" property="kba" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    type_id, model_id, type_from, type_from_year, type_from_month, type_to, type_to_year, 
+    type_to_month, type_kw, type_axles, type_tonnage, variant_id, type_name, kba
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from t_type
+    where type_id = #{typeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_type
+    where type_id = #{typeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.osram.osram.entity.TypeBean">
+    insert into t_type (type_id, model_id, type_from, 
+      type_from_year, type_from_month, type_to, 
+      type_to_year, type_to_month, type_kw, 
+      type_axles, type_tonnage, variant_id, 
+      type_name, kba)
+    values (#{typeId,jdbcType=INTEGER}, #{modelId,jdbcType=INTEGER}, #{typeFrom,jdbcType=VARCHAR}, 
+      #{typeFromYear,jdbcType=VARCHAR}, #{typeFromMonth,jdbcType=VARCHAR}, #{typeTo,jdbcType=VARCHAR}, 
+      #{typeToYear,jdbcType=VARCHAR}, #{typeToMonth,jdbcType=VARCHAR}, #{typeKw,jdbcType=VARCHAR}, 
+      #{typeAxles,jdbcType=VARCHAR}, #{typeTonnage,jdbcType=VARCHAR}, #{variantId,jdbcType=INTEGER}, 
+      #{typeName,jdbcType=VARCHAR}, #{kba,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.osram.osram.entity.TypeBean">
+    insert into t_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="typeId != null">
+        type_id,
+      </if>
+      <if test="modelId != null">
+        model_id,
+      </if>
+      <if test="typeFrom != null">
+        type_from,
+      </if>
+      <if test="typeFromYear != null">
+        type_from_year,
+      </if>
+      <if test="typeFromMonth != null">
+        type_from_month,
+      </if>
+      <if test="typeTo != null">
+        type_to,
+      </if>
+      <if test="typeToYear != null">
+        type_to_year,
+      </if>
+      <if test="typeToMonth != null">
+        type_to_month,
+      </if>
+      <if test="typeKw != null">
+        type_kw,
+      </if>
+      <if test="typeAxles != null">
+        type_axles,
+      </if>
+      <if test="typeTonnage != null">
+        type_tonnage,
+      </if>
+      <if test="variantId != null">
+        variant_id,
+      </if>
+      <if test="typeName != null">
+        type_name,
+      </if>
+      <if test="kba != null">
+        kba,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="typeId != null">
+        #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="modelId != null">
+        #{modelId,jdbcType=INTEGER},
+      </if>
+      <if test="typeFrom != null">
+        #{typeFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="typeFromYear != null">
+        #{typeFromYear,jdbcType=VARCHAR},
+      </if>
+      <if test="typeFromMonth != null">
+        #{typeFromMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="typeTo != null">
+        #{typeTo,jdbcType=VARCHAR},
+      </if>
+      <if test="typeToYear != null">
+        #{typeToYear,jdbcType=VARCHAR},
+      </if>
+      <if test="typeToMonth != null">
+        #{typeToMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="typeKw != null">
+        #{typeKw,jdbcType=VARCHAR},
+      </if>
+      <if test="typeAxles != null">
+        #{typeAxles,jdbcType=VARCHAR},
+      </if>
+      <if test="typeTonnage != null">
+        #{typeTonnage,jdbcType=VARCHAR},
+      </if>
+      <if test="variantId != null">
+        #{variantId,jdbcType=INTEGER},
+      </if>
+      <if test="typeName != null">
+        #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="kba != null">
+        #{kba,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.osram.osram.entity.TypeBean">
+    update t_type
+    <set>
+      <if test="modelId != null">
+        model_id = #{modelId,jdbcType=INTEGER},
+      </if>
+      <if test="typeFrom != null">
+        type_from = #{typeFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="typeFromYear != null">
+        type_from_year = #{typeFromYear,jdbcType=VARCHAR},
+      </if>
+      <if test="typeFromMonth != null">
+        type_from_month = #{typeFromMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="typeTo != null">
+        type_to = #{typeTo,jdbcType=VARCHAR},
+      </if>
+      <if test="typeToYear != null">
+        type_to_year = #{typeToYear,jdbcType=VARCHAR},
+      </if>
+      <if test="typeToMonth != null">
+        type_to_month = #{typeToMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="typeKw != null">
+        type_kw = #{typeKw,jdbcType=VARCHAR},
+      </if>
+      <if test="typeAxles != null">
+        type_axles = #{typeAxles,jdbcType=VARCHAR},
+      </if>
+      <if test="typeTonnage != null">
+        type_tonnage = #{typeTonnage,jdbcType=VARCHAR},
+      </if>
+      <if test="variantId != null">
+        variant_id = #{variantId,jdbcType=INTEGER},
+      </if>
+      <if test="typeName != null">
+        type_name = #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="kba != null">
+        kba = #{kba,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where type_id = #{typeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.osram.osram.entity.TypeBean">
+    update t_type
+    set model_id = #{modelId,jdbcType=INTEGER},
+      type_from = #{typeFrom,jdbcType=VARCHAR},
+      type_from_year = #{typeFromYear,jdbcType=VARCHAR},
+      type_from_month = #{typeFromMonth,jdbcType=VARCHAR},
+      type_to = #{typeTo,jdbcType=VARCHAR},
+      type_to_year = #{typeToYear,jdbcType=VARCHAR},
+      type_to_month = #{typeToMonth,jdbcType=VARCHAR},
+      type_kw = #{typeKw,jdbcType=VARCHAR},
+      type_axles = #{typeAxles,jdbcType=VARCHAR},
+      type_tonnage = #{typeTonnage,jdbcType=VARCHAR},
+      variant_id = #{variantId,jdbcType=INTEGER},
+      type_name = #{typeName,jdbcType=VARCHAR},
+      kba = #{kba,jdbcType=VARCHAR}
+    where type_id = #{typeId,jdbcType=INTEGER}
+  </update>
+
+  <select id="find" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_type
+  </select>
+
+</mapper>

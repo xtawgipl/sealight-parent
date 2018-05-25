@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<!-- 指定数据连接驱动jar地址 -->
+    <classPathEntry location="E:/maven/repo/mysql/mysql-connector-java/5.1.39/mysql-connector-java-5.1.39.jar"/>
+            
+    <context id="my" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressDate" value="false"/> <!-- 是否生成注释代时间戳-->
+            <property name="suppressAllComments" value="true"/> <!-- 是否取消注释 -->
+        </commentGenerator>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/jwspeaker?useSSL=false"
+                        userId="root" password="root"/>
+
+        <javaModelGenerator targetPackage="com.sealight.jwspeaker.entity" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <javaClientGenerator targetPackage="com.sealight.jwspeaker.mapper" targetProject="src/main/java"  type="XMLMAPPER">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!--<table
+               tableName="t_url_manager"
+               domainObjectName="UrlanagerBean"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false"
+               enableInsert="true"
+               selectByPrimaryKeyQueryId="true"
+               enableSelectByPrimaryKey="true"/>-->
+        <table
+                tableName="t_brand"
+                domainObjectName="BrandBean"
+                enableCountByExample="false"
+                enableUpdateByExample="false"
+                enableDeleteByExample="false"
+                enableSelectByExample="false"
+                selectByExampleQueryId="false"
+                enableInsert="true"
+                selectByPrimaryKeyQueryId="true"
+                enableSelectByPrimaryKey="true"/>
+        <table
+                tableName="t_model"
+                domainObjectName="ModelBean"
+                enableCountByExample="false"
+                enableUpdateByExample="false"
+                enableDeleteByExample="false"
+                enableSelectByExample="false"
+                selectByExampleQueryId="false"
+                enableInsert="true"
+                selectByPrimaryKeyQueryId="true"
+                enableSelectByPrimaryKey="true"/>
+        <table
+                tableName="t_year"
+                domainObjectName="YearBean"
+                enableCountByExample="false"
+                enableUpdateByExample="false"
+                enableDeleteByExample="false"
+                enableSelectByExample="false"
+                selectByExampleQueryId="false"
+                enableInsert="true"
+                selectByPrimaryKeyQueryId="true"
+                enableSelectByPrimaryKey="true"/>
+        <table
+                tableName="t_lamps"
+                domainObjectName="LampBean"
+                enableCountByExample="false"
+                enableUpdateByExample="false"
+                enableDeleteByExample="false"
+                enableSelectByExample="false"
+                selectByExampleQueryId="false"
+                enableInsert="true"
+                selectByPrimaryKeyQueryId="true"
+                enableSelectByPrimaryKey="true"/>
+    </context>
+</generatorConfiguration>

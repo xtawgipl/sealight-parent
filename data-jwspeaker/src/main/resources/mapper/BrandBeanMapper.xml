@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sealight.jwspeaker.mapper.BrandBeanMapper" >
+  <resultMap id="BaseResultMap" type="com.sealight.jwspeaker.entity.BrandBean" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="brand" property="brand" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, brand
+  </sql>
+  <insert id="insert" parameterType="com.sealight.jwspeaker.entity.BrandBean" >
+    insert into t_brand (id, brand)
+    values (#{id,jdbcType=INTEGER}, #{brand,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sealight.jwspeaker.entity.BrandBean" >
+    insert into t_brand
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="brand != null" >
+        brand,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="brand != null" >
+        #{brand,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="findAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_brand
+  </select>
+</mapper>

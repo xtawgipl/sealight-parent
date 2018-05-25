@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sealight.mapper.TechnologyBeanMapper">
+  <resultMap id="BaseResultMap" type="com.sealight.entity.TechnologyBean">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="use_id" jdbcType="INTEGER" property="useId" />
+    <result column="type_id" jdbcType="INTEGER" property="typeId" />
+    <result column="technology_id" jdbcType="INTEGER" property="technologyId" />
+    <result column="technology_name" jdbcType="VARCHAR" property="technologyName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, use_id, type_id, technology_id, technology_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from t_technology
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_technology
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sealight.entity.TechnologyBean">
+    insert into t_technology (id, use_id, type_id, 
+      technology_id, technology_name)
+    values (#{id,jdbcType=INTEGER}, #{useId,jdbcType=INTEGER}, #{typeId,jdbcType=INTEGER}, 
+      #{technologyId,jdbcType=INTEGER}, #{technologyName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sealight.entity.TechnologyBean">
+    insert into t_technology
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="useId != null">
+        use_id,
+      </if>
+      <if test="typeId != null">
+        type_id,
+      </if>
+      <if test="technologyId != null">
+        technology_id,
+      </if>
+      <if test="technologyName != null">
+        technology_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="useId != null">
+        #{useId,jdbcType=INTEGER},
+      </if>
+      <if test="typeId != null">
+        #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="technologyId != null">
+        #{technologyId,jdbcType=INTEGER},
+      </if>
+      <if test="technologyName != null">
+        #{technologyName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sealight.entity.TechnologyBean">
+    update t_technology
+    <set>
+      <if test="useId != null">
+        use_id = #{useId,jdbcType=INTEGER},
+      </if>
+      <if test="typeId != null">
+        type_id = #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="technologyId != null">
+        technology_id = #{technologyId,jdbcType=INTEGER},
+      </if>
+      <if test="technologyName != null">
+        technology_name = #{technologyName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sealight.entity.TechnologyBean">
+    update t_technology
+    set use_id = #{useId,jdbcType=INTEGER},
+      type_id = #{typeId,jdbcType=INTEGER},
+      technology_id = #{technologyId,jdbcType=INTEGER},
+      technology_name = #{technologyName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.sealight.entity.TechnologyBean">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="use_id" jdbcType="INTEGER" property="useId" />
+    <result column="type_id" jdbcType="INTEGER" property="typeId" />
+    <result column="technology_id" jdbcType="INTEGER" property="technologyId" />
+    <result column="technology_name" jdbcType="VARCHAR" property="technologyName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, use_id, type_id, technology_id, technology_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from t_technology
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_technology
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sealight.entity.TechnologyBean">
+    insert into t_technology (id, use_id, type_id, 
+      technology_id, technology_name)
+    values (#{id,jdbcType=INTEGER}, #{useId,jdbcType=INTEGER}, #{typeId,jdbcType=INTEGER}, 
+      #{technologyId,jdbcType=INTEGER}, #{technologyName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sealight.entity.TechnologyBean">
+    insert into t_technology
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="useId != null">
+        use_id,
+      </if>
+      <if test="typeId != null">
+        type_id,
+      </if>
+      <if test="technologyId != null">
+        technology_id,
+      </if>
+      <if test="technologyName != null">
+        technology_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="useId != null">
+        #{useId,jdbcType=INTEGER},
+      </if>
+      <if test="typeId != null">
+        #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="technologyId != null">
+        #{technologyId,jdbcType=INTEGER},
+      </if>
+      <if test="technologyName != null">
+        #{technologyName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sealight.entity.TechnologyBean">
+    update t_technology
+    <set>
+      <if test="useId != null">
+        use_id = #{useId,jdbcType=INTEGER},
+      </if>
+      <if test="typeId != null">
+        type_id = #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="technologyId != null">
+        technology_id = #{technologyId,jdbcType=INTEGER},
+      </if>
+      <if test="technologyName != null">
+        technology_name = #{technologyName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sealight.entity.TechnologyBean">
+    update t_technology
+    set use_id = #{useId,jdbcType=INTEGER},
+      type_id = #{typeId,jdbcType=INTEGER},
+      technology_id = #{technologyId,jdbcType=INTEGER},
+      technology_name = #{technologyName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.osram.osram.entity.TechnologyBean">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="use_id" jdbcType="INTEGER" property="useId" />
+    <result column="type_id" jdbcType="INTEGER" property="typeId" />
+    <result column="technology_id" jdbcType="INTEGER" property="technologyId" />
+    <result column="technology_name" jdbcType="VARCHAR" property="technologyName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, use_id, type_id, technology_id, technology_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from t_technology
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_technology
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.osram.osram.entity.TechnologyBean">
+    insert into t_technology (id, use_id, type_id, 
+      technology_id, technology_name)
+    values (#{id,jdbcType=INTEGER}, #{useId,jdbcType=INTEGER}, #{typeId,jdbcType=INTEGER}, 
+      #{technologyId,jdbcType=INTEGER}, #{technologyName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.osram.osram.entity.TechnologyBean">
+    insert into t_technology
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="useId != null">
+        use_id,
+      </if>
+      <if test="typeId != null">
+        type_id,
+      </if>
+      <if test="technologyId != null">
+        technology_id,
+      </if>
+      <if test="technologyName != null">
+        technology_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="useId != null">
+        #{useId,jdbcType=INTEGER},
+      </if>
+      <if test="typeId != null">
+        #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="technologyId != null">
+        #{technologyId,jdbcType=INTEGER},
+      </if>
+      <if test="technologyName != null">
+        #{technologyName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.osram.osram.entity.TechnologyBean">
+    update t_technology
+    <set>
+      <if test="useId != null">
+        use_id = #{useId,jdbcType=INTEGER},
+      </if>
+      <if test="typeId != null">
+        type_id = #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="technologyId != null">
+        technology_id = #{technologyId,jdbcType=INTEGER},
+      </if>
+      <if test="technologyName != null">
+        technology_name = #{technologyName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.osram.osram.entity.TechnologyBean">
+    update t_technology
+    set use_id = #{useId,jdbcType=INTEGER},
+      type_id = #{typeId,jdbcType=INTEGER},
+      technology_id = #{technologyId,jdbcType=INTEGER},
+      technology_name = #{technologyName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

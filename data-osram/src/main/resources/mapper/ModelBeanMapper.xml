@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sealight.mapper.ModelBeanMapper">
+  <resultMap id="BaseResultMap" type="com.sealight.entity.ModelBean">
+    <id column="model_id" jdbcType="INTEGER" property="modelId" />
+    <result column="manufacturer_id" jdbcType="INTEGER" property="manufacturerId" />
+    <result column="model_name" jdbcType="VARCHAR" property="modelName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    model_id, manufacturer_id, model_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from t_model
+    where model_id = #{modelId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_model
+    where model_id = #{modelId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sealight.entity.ModelBean">
+    insert into t_model (model_id, manufacturer_id, model_name
+      )
+    values (#{modelId,jdbcType=INTEGER}, #{manufacturerId,jdbcType=INTEGER}, #{modelName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sealight.entity.ModelBean">
+    insert into t_model
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="modelId != null">
+        model_id,
+      </if>
+      <if test="manufacturerId != null">
+        manufacturer_id,
+      </if>
+      <if test="modelName != null">
+        model_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="modelId != null">
+        #{modelId,jdbcType=INTEGER},
+      </if>
+      <if test="manufacturerId != null">
+        #{manufacturerId,jdbcType=INTEGER},
+      </if>
+      <if test="modelName != null">
+        #{modelName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sealight.entity.ModelBean">
+    update t_model
+    <set>
+      <if test="manufacturerId != null">
+        manufacturer_id = #{manufacturerId,jdbcType=INTEGER},
+      </if>
+      <if test="modelName != null">
+        model_name = #{modelName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where model_id = #{modelId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sealight.entity.ModelBean">
+    update t_model
+    set manufacturer_id = #{manufacturerId,jdbcType=INTEGER},
+      model_name = #{modelName,jdbcType=VARCHAR}
+    where model_id = #{modelId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.sealight.entity.ModelBean">
+    <id column="model_id" jdbcType="INTEGER" property="modelId" />
+    <result column="manufacturer_id" jdbcType="INTEGER" property="manufacturerId" />
+    <result column="model_name" jdbcType="VARCHAR" property="modelName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    model_id, manufacturer_id, model_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from t_model
+    where model_id = #{modelId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_model
+    where model_id = #{modelId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sealight.entity.ModelBean">
+    insert into t_model (model_id, manufacturer_id, model_name
+      )
+    values (#{modelId,jdbcType=INTEGER}, #{manufacturerId,jdbcType=INTEGER}, #{modelName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sealight.entity.ModelBean">
+    insert into t_model
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="modelId != null">
+        model_id,
+      </if>
+      <if test="manufacturerId != null">
+        manufacturer_id,
+      </if>
+      <if test="modelName != null">
+        model_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="modelId != null">
+        #{modelId,jdbcType=INTEGER},
+      </if>
+      <if test="manufacturerId != null">
+        #{manufacturerId,jdbcType=INTEGER},
+      </if>
+      <if test="modelName != null">
+        #{modelName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sealight.entity.ModelBean">
+    update t_model
+    <set>
+      <if test="manufacturerId != null">
+        manufacturer_id = #{manufacturerId,jdbcType=INTEGER},
+      </if>
+      <if test="modelName != null">
+        model_name = #{modelName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where model_id = #{modelId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sealight.entity.ModelBean">
+    update t_model
+    set manufacturer_id = #{manufacturerId,jdbcType=INTEGER},
+      model_name = #{modelName,jdbcType=VARCHAR}
+    where model_id = #{modelId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.osram.osram.entity.ModelBean">
+    <id column="model_id" jdbcType="INTEGER" property="modelId" />
+    <result column="manufacturer_id" jdbcType="INTEGER" property="manufacturerId" />
+    <result column="model_name" jdbcType="VARCHAR" property="modelName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    model_id, manufacturer_id, model_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from t_model
+    where model_id = #{modelId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_model
+    where model_id = #{modelId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.osram.osram.entity.ModelBean">
+    insert into t_model (model_id, manufacturer_id, model_name
+      )
+    values (#{modelId,jdbcType=INTEGER}, #{manufacturerId,jdbcType=INTEGER}, #{modelName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.osram.osram.entity.ModelBean">
+    insert into t_model
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="modelId != null">
+        model_id,
+      </if>
+      <if test="manufacturerId != null">
+        manufacturer_id,
+      </if>
+      <if test="modelName != null">
+        model_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="modelId != null">
+        #{modelId,jdbcType=INTEGER},
+      </if>
+      <if test="manufacturerId != null">
+        #{manufacturerId,jdbcType=INTEGER},
+      </if>
+      <if test="modelName != null">
+        #{modelName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.osram.osram.entity.ModelBean">
+    update t_model
+    <set>
+      <if test="manufacturerId != null">
+        manufacturer_id = #{manufacturerId,jdbcType=INTEGER},
+      </if>
+      <if test="modelName != null">
+        model_name = #{modelName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where model_id = #{modelId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.osram.osram.entity.ModelBean">
+    update t_model
+    set manufacturer_id = #{manufacturerId,jdbcType=INTEGER},
+      model_name = #{modelName,jdbcType=VARCHAR}
+    where model_id = #{modelId,jdbcType=INTEGER}
+  </update>
+</mapper>
