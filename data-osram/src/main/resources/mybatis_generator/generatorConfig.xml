@@ -30,7 +30,7 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <table
+        <!--<table
                tableName="t_url_manager"
                domainObjectName="UrlanagerBean"
                enableCountByExample="false"
@@ -97,7 +97,7 @@
                selectByExampleQueryId="false"
                enableInsert="true"
                selectByPrimaryKeyQueryId="true"
-               enableSelectByPrimaryKey="true"/>
+               enableSelectByPrimaryKey="true"/>-->
         <table
                tableName="t_type"
                domainObjectName="TypeBean"

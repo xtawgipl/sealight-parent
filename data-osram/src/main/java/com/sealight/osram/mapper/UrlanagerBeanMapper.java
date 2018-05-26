@@ -1,6 +1,7 @@
 package com.sealight.osram.mapper;
 
 import com.sealight.osram.entity.UrlanagerBean;
+import org.apache.ibatis.annotations.Param;
 
 public interface UrlanagerBeanMapper {
     int deleteByPrimaryKey(Integer id);
@@ -14,4 +15,6 @@ public interface UrlanagerBeanMapper {
     int updateByPrimaryKeySelective(UrlanagerBean record);
 
     int updateByPrimaryKey(UrlanagerBean record);
+
+    UrlanagerBean findByUrl(@Param("url") String url);
 }

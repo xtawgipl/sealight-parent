@@ -34,6 +34,14 @@
     from t_light_infos
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="findByKeys" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_light_infos
+    where typeId = #{type_id,jdbcType=VARCHAR}
+    and useId = #{use_id,jdbcType=VARCHAR}
+    and technologyId = #{technology_id,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from t_light_infos
     where id = #{id,jdbcType=INTEGER}

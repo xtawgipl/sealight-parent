@@ -1,6 +1,7 @@
 package com.sealight.osram.mapper;
 
 import com.sealight.osram.entity.LightInfosBean;
+import org.apache.ibatis.annotations.Param;
 
 public interface LightInfosBeanMapper {
     int deleteByPrimaryKey(Integer id);
@@ -14,4 +15,6 @@ public interface LightInfosBeanMapper {
     int updateByPrimaryKeySelective(LightInfosBean record);
 
     int updateByPrimaryKey(LightInfosBean record);
+
+    LightInfosBean findByKeys(@Param("typeId") String typeId, @Param("useId") String useId, @Param("technologyId") String technologyId);
 }

@@ -14,4 +14,7 @@ public interface TypeBeanMapper {
     int updateByPrimaryKeySelective(TypeBean record);
 
     int updateByPrimaryKey(TypeBean record);
+
+
+    int countAll();
 }
