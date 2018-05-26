@@ -1,5 +1,6 @@
 package com.sealight.util;
 
+import com.alibaba.fastjson.JSONObject;
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.config.RequestConfig;
@@ -29,6 +30,11 @@ public class URLFetcher {
     /** 默认重试次数 */
     public static final Integer TRY_NUM = 180;
 
+
+    public static JSONObject pickDataJSON(String url) {
+        String data = pickData(url);
+        return JSONObject.parseObject(data);
+    }
 
     public static String pickData(String url) {
 

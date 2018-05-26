@@ -121,7 +121,7 @@ public class Loader implements CommandLineRunner {
 
         logger.info("数据抓取完成...........");*/
 
-        excelService.outputAll();
+//        excelService.outputAll();
 
     }
 

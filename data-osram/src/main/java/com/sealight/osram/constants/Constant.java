@@ -1,11 +1,7 @@
 package com.sealight.osram.constants;
 
-import com.google.common.collect.Maps;
-
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 项目常量配置
@@ -16,41 +12,45 @@ import java.util.Map;
 public class Constant {
 
 
-    //主页地址：http://www.jwspeaker.com/ymm/
-
     //生成的excel表存放地址
-    public final static String EXCEL_PATH = "D:/data/jwspeaker/xls/";
+    public final static String EXCEL_PATH = "D:/data/osram/xls/";
 
 
-    /**
-     * 所有车
-     */
-    public final static Map<String, String> BRAND_DICT = new HashMap<String, String>() {{
-        put("BMW", "BMW");
-        put("Ducati", "Ducati");
-        put("Harley Davidson", "Harley Davidson");
-        put("Indian", "Indian");
-        put("Moto Guzzi", "Moto Guzzi");
-        put("Triumph", "Triumph");
-        put("Victory", "Victory");
+    //获取所有品牌如 BMW等
+    public final static List<String> ALL_MANUFACTURER_URL = new ArrayList<String>() {{
+        add("https://am-application.osram.info/en/getAllManufacturer/1.json");
     }};
 
-    /**
-     * document.getElementById('yeardiv').style.display = 'none';document.getElementById('distdiv').style.display = 'none';document.getElementById('regdiv').style.display = 'none';document.getElementById('buylink').style.display = 'none';document.getElementById('modeldiv').style.display = 'block';document.getElementById('tables').innerHTML = '';var select = document.getElementById('model');$('#model').children().remove();select.innerHTML = select.innerHTML + '<option value=\'\' SELECTED DISABLED >Please select a model to filter years</option>';select.innerHTML = select.innerHTML + '<option value=\'R NINE T\' >R NINE T</option>';select.innerHTML = select.innerHTML + '<option value=\'R100R\' >R100R</option>';select.innerHTML = select.innerHTML + '<option value=\'R100R MYSTIK\' >R100R MYSTIK</option>';select.innerHTML = select.innerHTML + '<option value=\'R100S\' >R100S</option>';select.innerHTML = select.innerHTML + '<option value=\'R100T\' >R100T</option>';select.innerHTML = select.innerHTML + '<option value=\'R1100R\' >R1100R</option>';select.innerHTML = select.innerHTML + '<option value=\'R1150R\' >R1150R</option>';select.innerHTML = select.innerHTML + '<option value=\'R1200C\' >R1200C</option>';select.innerHTML = select.innerHTML + '<option value=\'R850R\' >R850R</option>';
-     * 型号： 占位符为车 如： BMW
-     */
-    public final static String GETGARAGEINFO_URL = "https://my.jwspeaker.com/garage/getgarageinfo.php?brand=%s";
+    //获取品牌的所有系列(型号),如 BMW的 x5 x6等
+    //占位符为品牌的id,如BMW的品牌id为6;
+    public final static String ALL_MODEL_URL = "https://am-application.osram.info/en/getAllModel/{}/1.json";
 
-    /**
-     * 年份地址： 占位符为 制造商：如R100S  车：如BMW
-     * document.getElementById('yeardiv').style.display = 'block';document.getElementById('tables').innerHTML = '';var select = document.getElementById('year');$('#year').children().remove();select.innerHTML = select.innerHTML + '<option value=\'\' SELECTED DISABLED >Please select a year</option>';select.innerHTML = select.innerHTML + '<option value=\'2014\' >2014</option>';select.innerHTML = select.innerHTML + '<option value=\'2015\' >2015</option>';select.innerHTML = select.innerHTML + '<option value=\'2016\' >2016</option>';select.innerHTML = select.innerHTML + '<option value=\'2017\' >2017</option>';document.getElementById('distdiv').style.display = 'block';document.getElementById('regdiv').style.display = 'block';document.getElementById('buylink').style.display = 'none';
-     */
-    public final static String GETGARAGEINFO_URL2 = "https://my.jwspeaker.com/garage/getgarageinfo.php?model=%s&brand=%s";
+    //根据车型号id查所有灯
+    //占位符为型号的id,如X5的型号id为7552
+    public final static String ALL_TYPE_URL = "https://am-application.osram.info/en/getAllType/{}.json";
 
-    /**
-     * 灯地址： 占位符为 车：如BMW ,制造商：如R100S , 年份：如1998
-     */
-    public final static String GETGARAGEINFO_URL3 = "http://my.jwspeaker.com/garage/garage.php";
+    //根据type_id获取对应下的所有灯（包括前 后 类 三种灯）,占位符为type_id
+    public final static String ALL_LIGHT_URL = "https://am-application.osram.info/en/getAllUse/{}.json";
 
+    //根据 use_id, type_id获取灯的工艺类型，第一个点位符为use_id 第二个为type_id
+    public final static String ALL_TECHNOLOGY_URL = "https://am-application.osram.info/en/getAllTechnology/{}/{}.json";
+
+    //根据 use_id, type_id， technology_id 获取 灯详情; 第一个点位符为use_id 第二个为type_id 第三个为technology_id
+    public final static String LAMPS_BY_USE_URL = "https://am-application.osram.info/en/getLampsByUse/{}/{}/{}.json";
+
+    //前灯pos_id集合
+    public final static List<String> FRONT_POS_ID_LIST = new ArrayList<String>() {{
+        add("409");
+    }};
+
+    //后灯pos_id集合
+    public final static List<String> REAR_POS_ID_LIST = new ArrayList<String>() {{
+        add("410");
+    }};
+
+    //内类pos_id集合
+    public final static List<String> INTERNAL_POS_ID_LIST = new ArrayList<String>() {{
+        add("411");
+    }};
 
 }
