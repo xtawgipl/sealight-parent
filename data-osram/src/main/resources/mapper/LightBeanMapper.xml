@@ -1,266 +1,88 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.sealight.mapper.LightBeanMapper">
-  <resultMap id="BaseResultMap" type="com.sealight.entity.LightBean">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="type_id" jdbcType="INTEGER" property="typeId" />
-    <result column="use_id" jdbcType="INTEGER" property="useId" />
-    <result column="pos_id" jdbcType="INTEGER" property="posId" />
-    <result column="use_name" jdbcType="VARCHAR" property="useName" />
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sealight.osram.mapper.LightBeanMapper" >
+  <resultMap id="BaseResultMap" type="com.sealight.osram.entity.LightBean" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="type_id" property="typeId" jdbcType="INTEGER" />
+    <result column="use_id" property="useId" jdbcType="INTEGER" />
+    <result column="pos_id" property="posId" jdbcType="INTEGER" />
+    <result column="use_name" property="useName" jdbcType="VARCHAR" />
   </resultMap>
-  <sql id="Base_Column_List">
+  <sql id="Base_Column_List" >
     id, type_id, use_id, pos_id, use_name
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 'true' as QUERYID,
     <include refid="Base_Column_List" />
     from t_light
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from t_light
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.sealight.entity.LightBean">
+  <insert id="insert" parameterType="com.sealight.osram.entity.LightBean" >
     insert into t_light (id, type_id, use_id, 
       pos_id, use_name)
     values (#{id,jdbcType=INTEGER}, #{typeId,jdbcType=INTEGER}, #{useId,jdbcType=INTEGER}, 
       #{posId,jdbcType=INTEGER}, #{useName,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.sealight.entity.LightBean">
+  <insert id="insertSelective" parameterType="com.sealight.osram.entity.LightBean" >
     insert into t_light
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
         id,
       </if>
-      <if test="typeId != null">
+      <if test="typeId != null" >
         type_id,
       </if>
-      <if test="useId != null">
+      <if test="useId != null" >
         use_id,
       </if>
-      <if test="posId != null">
+      <if test="posId != null" >
         pos_id,
       </if>
-      <if test="useName != null">
+      <if test="useName != null" >
         use_name,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="typeId != null">
+      <if test="typeId != null" >
         #{typeId,jdbcType=INTEGER},
       </if>
-      <if test="useId != null">
+      <if test="useId != null" >
         #{useId,jdbcType=INTEGER},
       </if>
-      <if test="posId != null">
+      <if test="posId != null" >
         #{posId,jdbcType=INTEGER},
       </if>
-      <if test="useName != null">
+      <if test="useName != null" >
         #{useName,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.sealight.entity.LightBean">
+  <update id="updateByPrimaryKeySelective" parameterType="com.sealight.osram.entity.LightBean" >
     update t_light
-    <set>
-      <if test="typeId != null">
+    <set >
+      <if test="typeId != null" >
         type_id = #{typeId,jdbcType=INTEGER},
       </if>
-      <if test="useId != null">
+      <if test="useId != null" >
         use_id = #{useId,jdbcType=INTEGER},
       </if>
-      <if test="posId != null">
+      <if test="posId != null" >
         pos_id = #{posId,jdbcType=INTEGER},
       </if>
-      <if test="useName != null">
+      <if test="useName != null" >
         use_name = #{useName,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.sealight.entity.LightBean">
-    update t_light
-    set type_id = #{typeId,jdbcType=INTEGER},
-      use_id = #{useId,jdbcType=INTEGER},
-      pos_id = #{posId,jdbcType=INTEGER},
-      use_name = #{useName,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <resultMap id="BaseResultMap" type="com.sealight.entity.LightBean">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="type_id" jdbcType="INTEGER" property="typeId" />
-    <result column="use_id" jdbcType="INTEGER" property="useId" />
-    <result column="pos_id" jdbcType="INTEGER" property="posId" />
-    <result column="use_name" jdbcType="VARCHAR" property="useName" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, type_id, use_id, pos_id, use_name
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 'true' as QUERYID,
-    <include refid="Base_Column_List" />
-    from t_light
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from t_light
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.sealight.entity.LightBean">
-    insert into t_light (id, type_id, use_id, 
-      pos_id, use_name)
-    values (#{id,jdbcType=INTEGER}, #{typeId,jdbcType=INTEGER}, #{useId,jdbcType=INTEGER}, 
-      #{posId,jdbcType=INTEGER}, #{useName,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.sealight.entity.LightBean">
-    insert into t_light
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="typeId != null">
-        type_id,
-      </if>
-      <if test="useId != null">
-        use_id,
-      </if>
-      <if test="posId != null">
-        pos_id,
-      </if>
-      <if test="useName != null">
-        use_name,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="typeId != null">
-        #{typeId,jdbcType=INTEGER},
-      </if>
-      <if test="useId != null">
-        #{useId,jdbcType=INTEGER},
-      </if>
-      <if test="posId != null">
-        #{posId,jdbcType=INTEGER},
-      </if>
-      <if test="useName != null">
-        #{useName,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.sealight.entity.LightBean">
-    update t_light
-    <set>
-      <if test="typeId != null">
-        type_id = #{typeId,jdbcType=INTEGER},
-      </if>
-      <if test="useId != null">
-        use_id = #{useId,jdbcType=INTEGER},
-      </if>
-      <if test="posId != null">
-        pos_id = #{posId,jdbcType=INTEGER},
-      </if>
-      <if test="useName != null">
-        use_name = #{useName,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.sealight.entity.LightBean">
-    update t_light
-    set type_id = #{typeId,jdbcType=INTEGER},
-      use_id = #{useId,jdbcType=INTEGER},
-      pos_id = #{posId,jdbcType=INTEGER},
-      use_name = #{useName,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <resultMap id="BaseResultMap" type="com.osram.osram.entity.LightBean">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="type_id" jdbcType="INTEGER" property="typeId" />
-    <result column="use_id" jdbcType="INTEGER" property="useId" />
-    <result column="pos_id" jdbcType="INTEGER" property="posId" />
-    <result column="use_name" jdbcType="VARCHAR" property="useName" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, type_id, use_id, pos_id, use_name
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 'true' as QUERYID,
-    <include refid="Base_Column_List" />
-    from t_light
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from t_light
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.osram.osram.entity.LightBean">
-    insert into t_light (id, type_id, use_id, 
-      pos_id, use_name)
-    values (#{id,jdbcType=INTEGER}, #{typeId,jdbcType=INTEGER}, #{useId,jdbcType=INTEGER}, 
-      #{posId,jdbcType=INTEGER}, #{useName,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.osram.osram.entity.LightBean">
-    insert into t_light
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="typeId != null">
-        type_id,
-      </if>
-      <if test="useId != null">
-        use_id,
-      </if>
-      <if test="posId != null">
-        pos_id,
-      </if>
-      <if test="useName != null">
-        use_name,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="typeId != null">
-        #{typeId,jdbcType=INTEGER},
-      </if>
-      <if test="useId != null">
-        #{useId,jdbcType=INTEGER},
-      </if>
-      <if test="posId != null">
-        #{posId,jdbcType=INTEGER},
-      </if>
-      <if test="useName != null">
-        #{useName,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.osram.osram.entity.LightBean">
-    update t_light
-    <set>
-      <if test="typeId != null">
-        type_id = #{typeId,jdbcType=INTEGER},
-      </if>
-      <if test="useId != null">
-        use_id = #{useId,jdbcType=INTEGER},
-      </if>
-      <if test="posId != null">
-        pos_id = #{posId,jdbcType=INTEGER},
-      </if>
-      <if test="useName != null">
-        use_name = #{useName,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.osram.osram.entity.LightBean">
+  <update id="updateByPrimaryKey" parameterType="com.sealight.osram.entity.LightBean" >
     update t_light
     set type_id = #{typeId,jdbcType=INTEGER},
       use_id = #{useId,jdbcType=INTEGER},

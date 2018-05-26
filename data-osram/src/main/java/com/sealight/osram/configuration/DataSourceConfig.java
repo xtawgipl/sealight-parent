@@ -1,4 +1,4 @@
-package com.osram.osram.configuration;
+package com.sealight.osram.configuration;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.sealight.page.dialect.DialectType;
@@ -26,7 +26,7 @@ public class DataSourceConfig {
 //	private Logger logger = LoggerFactory.getLogger(ItmsDataSourceConfig.class);
 	
 	// 精确到 itms 目录，以便跟其他数据源隔离
-    static final String PACKAGE = "com.tydic.traffic.mapper";
+    static final String PACKAGE = "com.sealight.osram.mapper";
     static final String MAPPER_LOCATION = "classpath:mapper/*.xml";
     
 	@Primary

@@ -1,8 +1,6 @@
-package com.osram.osram.mapper;
+package com.sealight.osram.mapper;
 
-import com.osram.osram.entity.TypeBean;
-
-import java.util.List;
+import com.sealight.osram.entity.TypeBean;
 
 public interface TypeBeanMapper {
     int deleteByPrimaryKey(Integer typeId);
@@ -16,7 +14,4 @@ public interface TypeBeanMapper {
     int updateByPrimaryKeySelective(TypeBean record);
 
     int updateByPrimaryKey(TypeBean record);
-
-    List<TypeBean> find();
-
 }

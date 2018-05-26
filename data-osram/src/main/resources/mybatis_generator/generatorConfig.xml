@@ -5,7 +5,7 @@
 
 <generatorConfiguration>
 	<!-- 指定数据连接驱动jar地址 -->
-    <classPathEntry location="E:/maven/repo/mysql/mysql-connector-java/5.1.39/mysql-connector-java-5.1.39.jar"/>
+    <classPathEntry location="E:/repo/mysql/mysql-connector-java/5.1.39/mysql-connector-java-5.1.39.jar"/>
             
     <context id="my" targetRuntime="MyBatis3">
         <commentGenerator>
@@ -14,10 +14,10 @@
         </commentGenerator>
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://127.0.0.1:3306/osram?useSSL=false"
+                        connectionURL="jdbc:mysql://119.29.26.226:3306/osram?useSSL=false"
                         userId="root" password="root"/>
 
-        <javaModelGenerator targetPackage="com.sealight.entity" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.sealight.osram.entity" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
@@ -26,10 +26,21 @@
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
-        <javaClientGenerator targetPackage="com.sealight.mapper" targetProject="src/main/java"  type="XMLMAPPER">
+        <javaClientGenerator targetPackage="com.sealight.osram.mapper" targetProject="src/main/java"  type="XMLMAPPER">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
+        <table
+               tableName="t_url_manager"
+               domainObjectName="UrlanagerBean"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false"
+               enableInsert="true"
+               selectByPrimaryKeyQueryId="true"
+               enableSelectByPrimaryKey="true"/>
         <table
                tableName="t_light"
                domainObjectName="LightBean"
@@ -51,7 +62,9 @@
                selectByExampleQueryId="false"
                enableInsert="true"
                selectByPrimaryKeyQueryId="true"
-               enableSelectByPrimaryKey="true"/>
+               enableSelectByPrimaryKey="true">
+            <columnOverride column="bullet_list" javaType="java.lang.String" jdbcType="VARCHAR" />
+        </table>
         <table
                tableName="t_manufacturer"
                domainObjectName="ManufacturerBean"
@@ -64,8 +77,8 @@
                selectByPrimaryKeyQueryId="true"
                enableSelectByPrimaryKey="true"/>
         <table
-               tableName="t_model"
-               domainObjectName="ModelBean"
+               tableName="ModelBean"
+               domainObjectName="UrlanagerBean"
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"
@@ -88,17 +101,6 @@
         <table
                tableName="t_type"
                domainObjectName="TypeBean"
-               enableCountByExample="false"
-               enableUpdateByExample="false"
-               enableDeleteByExample="false"
-               enableSelectByExample="false"
-               selectByExampleQueryId="false"
-               enableInsert="true"
-               selectByPrimaryKeyQueryId="true"
-               enableSelectByPrimaryKey="true"/>
-        <table
-               tableName="t_url_manager"
-               domainObjectName="UrlanagerBean"
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"

@@ -1,6 +1,6 @@
-package com.osram.osram.mapper;
+package com.sealight.osram.mapper;
 
-import com.osram.osram.entity.TechnologyBean;
+import com.sealight.osram.entity.TechnologyBean;
 
 public interface TechnologyBeanMapper {
     int deleteByPrimaryKey(Integer id);

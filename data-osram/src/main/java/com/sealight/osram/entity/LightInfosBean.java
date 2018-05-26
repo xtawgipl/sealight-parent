@@ -1,4 +1,4 @@
-package com.osram.osram.entity;
+package com.sealight.osram.entity;
 
 public class LightInfosBean {
     private Integer id;
@@ -10,6 +10,8 @@ public class LightInfosBean {
     private Integer technologyId;
 
     private Integer order;
+
+    private String bulletList;
 
     private String lampInfo;
 
@@ -38,8 +40,6 @@ public class LightInfosBean {
     private String productZmp;
 
     private String usp;
-
-    private String bulletList;
 
     public Integer getId() {
         return id;
@@ -79,6 +79,14 @@ public class LightInfosBean {
 
     public void setOrder(Integer order) {
         this.order = order;
+    }
+
+    public String getBulletList() {
+        return bulletList;
+    }
+
+    public void setBulletList(String bulletList) {
+        this.bulletList = bulletList == null ? null : bulletList.trim();
     }
 
     public String getLampInfo() {
@@ -191,13 +199,5 @@ public class LightInfosBean {
 
     public void setUsp(String usp) {
         this.usp = usp == null ? null : usp.trim();
-    }
-
-    public String getBulletList() {
-        return bulletList;
-    }
-
-    public void setBulletList(String bulletList) {
-        this.bulletList = bulletList == null ? null : bulletList.trim();
     }
 }

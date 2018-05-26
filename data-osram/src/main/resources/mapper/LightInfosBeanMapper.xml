@@ -1,883 +1,256 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.sealight.mapper.LightInfosBeanMapper">
-  <resultMap id="BaseResultMap" type="com.sealight.entity.LightInfosBean">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="use_id" jdbcType="INTEGER" property="useId" />
-    <result column="type_id" jdbcType="INTEGER" property="typeId" />
-    <result column="technology_id" jdbcType="INTEGER" property="technologyId" />
-    <result column="order" jdbcType="INTEGER" property="order" />
-    <result column="lamp_info" jdbcType="VARCHAR" property="lampInfo" />
-    <result column="linecard_id" jdbcType="INTEGER" property="linecardId" />
-    <result column="linecard_name" jdbcType="VARCHAR" property="linecardName" />
-    <result column="linksAutomotive" jdbcType="VARCHAR" property="linksautomotive" />
-    <result column="osram_bestnr" jdbcType="VARCHAR" property="osramBestnr" />
-    <result column="osram_ean" jdbcType="VARCHAR" property="osramEan" />
-    <result column="osram_ece" jdbcType="VARCHAR" property="osramEce" />
-    <result column="pillar_id" jdbcType="INTEGER" property="pillarId" />
-    <result column="pillar_image" jdbcType="VARCHAR" property="pillarImage" />
-    <result column="pillar_name" jdbcType="VARCHAR" property="pillarName" />
-    <result column="prio" jdbcType="VARCHAR" property="prio" />
-    <result column="product_image" jdbcType="VARCHAR" property="productImage" />
-    <result column="product_zmp" jdbcType="VARCHAR" property="productZmp" />
-    <result column="usp" jdbcType="VARCHAR" property="usp" />
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sealight.osram.mapper.LightInfosBeanMapper" >
+  <resultMap id="BaseResultMap" type="com.sealight.osram.entity.LightInfosBean" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="use_id" property="useId" jdbcType="INTEGER" />
+    <result column="type_id" property="typeId" jdbcType="INTEGER" />
+    <result column="technology_id" property="technologyId" jdbcType="INTEGER" />
+    <result column="order" property="order" jdbcType="INTEGER" />
+    <result column="bullet_list" property="bulletList" jdbcType="VARCHAR" />
+    <result column="lamp_info" property="lampInfo" jdbcType="VARCHAR" />
+    <result column="linecard_id" property="linecardId" jdbcType="INTEGER" />
+    <result column="linecard_name" property="linecardName" jdbcType="VARCHAR" />
+    <result column="linksAutomotive" property="linksautomotive" jdbcType="VARCHAR" />
+    <result column="osram_bestnr" property="osramBestnr" jdbcType="VARCHAR" />
+    <result column="osram_ean" property="osramEan" jdbcType="VARCHAR" />
+    <result column="osram_ece" property="osramEce" jdbcType="VARCHAR" />
+    <result column="pillar_id" property="pillarId" jdbcType="INTEGER" />
+    <result column="pillar_image" property="pillarImage" jdbcType="VARCHAR" />
+    <result column="pillar_name" property="pillarName" jdbcType="VARCHAR" />
+    <result column="prio" property="prio" jdbcType="VARCHAR" />
+    <result column="product_image" property="productImage" jdbcType="VARCHAR" />
+    <result column="product_zmp" property="productZmp" jdbcType="VARCHAR" />
+    <result column="usp" property="usp" jdbcType="VARCHAR" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.sealight.entity.LightInfosBean">
-    <result column="bullet_list" jdbcType="LONGVARCHAR" property="bulletList" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, use_id, type_id, technology_id, order, lamp_info, linecard_id, linecard_name, 
+  <sql id="Base_Column_List" >
+    id, use_id, type_id, technology_id, order, bullet_list, lamp_info, linecard_id, linecard_name, 
     linksAutomotive, osram_bestnr, osram_ean, osram_ece, pillar_id, pillar_image, pillar_name, 
     prio, product_image, product_zmp, usp
   </sql>
-  <sql id="Blob_Column_List">
-    bullet_list
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 'true' as QUERYID,
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from t_light_infos
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from t_light_infos
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.sealight.entity.LightInfosBean">
+  <insert id="insert" parameterType="com.sealight.osram.entity.LightInfosBean" >
     insert into t_light_infos (id, use_id, type_id, 
-      technology_id, order, lamp_info, 
-      linecard_id, linecard_name, linksAutomotive, 
-      osram_bestnr, osram_ean, osram_ece, 
-      pillar_id, pillar_image, pillar_name, 
-      prio, product_image, product_zmp, 
-      usp, bullet_list)
+      technology_id, order, bullet_list, 
+      lamp_info, linecard_id, linecard_name, 
+      linksAutomotive, osram_bestnr, osram_ean, 
+      osram_ece, pillar_id, pillar_image, 
+      pillar_name, prio, product_image, 
+      product_zmp, usp)
     values (#{id,jdbcType=INTEGER}, #{useId,jdbcType=INTEGER}, #{typeId,jdbcType=INTEGER}, 
-      #{technologyId,jdbcType=INTEGER}, #{order,jdbcType=INTEGER}, #{lampInfo,jdbcType=VARCHAR}, 
-      #{linecardId,jdbcType=INTEGER}, #{linecardName,jdbcType=VARCHAR}, #{linksautomotive,jdbcType=VARCHAR}, 
-      #{osramBestnr,jdbcType=VARCHAR}, #{osramEan,jdbcType=VARCHAR}, #{osramEce,jdbcType=VARCHAR}, 
-      #{pillarId,jdbcType=INTEGER}, #{pillarImage,jdbcType=VARCHAR}, #{pillarName,jdbcType=VARCHAR}, 
-      #{prio,jdbcType=VARCHAR}, #{productImage,jdbcType=VARCHAR}, #{productZmp,jdbcType=VARCHAR}, 
-      #{usp,jdbcType=VARCHAR}, #{bulletList,jdbcType=LONGVARCHAR})
+      #{technologyId,jdbcType=INTEGER}, #{order,jdbcType=INTEGER}, #{bulletList,jdbcType=VARCHAR}, 
+      #{lampInfo,jdbcType=VARCHAR}, #{linecardId,jdbcType=INTEGER}, #{linecardName,jdbcType=VARCHAR}, 
+      #{linksautomotive,jdbcType=VARCHAR}, #{osramBestnr,jdbcType=VARCHAR}, #{osramEan,jdbcType=VARCHAR}, 
+      #{osramEce,jdbcType=VARCHAR}, #{pillarId,jdbcType=INTEGER}, #{pillarImage,jdbcType=VARCHAR}, 
+      #{pillarName,jdbcType=VARCHAR}, #{prio,jdbcType=VARCHAR}, #{productImage,jdbcType=VARCHAR}, 
+      #{productZmp,jdbcType=VARCHAR}, #{usp,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.sealight.entity.LightInfosBean">
+  <insert id="insertSelective" parameterType="com.sealight.osram.entity.LightInfosBean" >
     insert into t_light_infos
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
         id,
       </if>
-      <if test="useId != null">
+      <if test="useId != null" >
         use_id,
       </if>
-      <if test="typeId != null">
+      <if test="typeId != null" >
         type_id,
       </if>
-      <if test="technologyId != null">
+      <if test="technologyId != null" >
         technology_id,
       </if>
-      <if test="order != null">
+      <if test="order != null" >
         order,
       </if>
-      <if test="lampInfo != null">
-        lamp_info,
-      </if>
-      <if test="linecardId != null">
-        linecard_id,
-      </if>
-      <if test="linecardName != null">
-        linecard_name,
-      </if>
-      <if test="linksautomotive != null">
-        linksAutomotive,
-      </if>
-      <if test="osramBestnr != null">
-        osram_bestnr,
-      </if>
-      <if test="osramEan != null">
-        osram_ean,
-      </if>
-      <if test="osramEce != null">
-        osram_ece,
-      </if>
-      <if test="pillarId != null">
-        pillar_id,
-      </if>
-      <if test="pillarImage != null">
-        pillar_image,
-      </if>
-      <if test="pillarName != null">
-        pillar_name,
-      </if>
-      <if test="prio != null">
-        prio,
-      </if>
-      <if test="productImage != null">
-        product_image,
-      </if>
-      <if test="productZmp != null">
-        product_zmp,
-      </if>
-      <if test="usp != null">
-        usp,
-      </if>
-      <if test="bulletList != null">
+      <if test="bulletList != null" >
         bullet_list,
       </if>
+      <if test="lampInfo != null" >
+        lamp_info,
+      </if>
+      <if test="linecardId != null" >
+        linecard_id,
+      </if>
+      <if test="linecardName != null" >
+        linecard_name,
+      </if>
+      <if test="linksautomotive != null" >
+        linksAutomotive,
+      </if>
+      <if test="osramBestnr != null" >
+        osram_bestnr,
+      </if>
+      <if test="osramEan != null" >
+        osram_ean,
+      </if>
+      <if test="osramEce != null" >
+        osram_ece,
+      </if>
+      <if test="pillarId != null" >
+        pillar_id,
+      </if>
+      <if test="pillarImage != null" >
+        pillar_image,
+      </if>
+      <if test="pillarName != null" >
+        pillar_name,
+      </if>
+      <if test="prio != null" >
+        prio,
+      </if>
+      <if test="productImage != null" >
+        product_image,
+      </if>
+      <if test="productZmp != null" >
+        product_zmp,
+      </if>
+      <if test="usp != null" >
+        usp,
+      </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="useId != null">
+      <if test="useId != null" >
         #{useId,jdbcType=INTEGER},
       </if>
-      <if test="typeId != null">
+      <if test="typeId != null" >
         #{typeId,jdbcType=INTEGER},
       </if>
-      <if test="technologyId != null">
+      <if test="technologyId != null" >
         #{technologyId,jdbcType=INTEGER},
       </if>
-      <if test="order != null">
+      <if test="order != null" >
         #{order,jdbcType=INTEGER},
       </if>
-      <if test="lampInfo != null">
+      <if test="bulletList != null" >
+        #{bulletList,jdbcType=VARCHAR},
+      </if>
+      <if test="lampInfo != null" >
         #{lampInfo,jdbcType=VARCHAR},
       </if>
-      <if test="linecardId != null">
+      <if test="linecardId != null" >
         #{linecardId,jdbcType=INTEGER},
       </if>
-      <if test="linecardName != null">
+      <if test="linecardName != null" >
         #{linecardName,jdbcType=VARCHAR},
       </if>
-      <if test="linksautomotive != null">
+      <if test="linksautomotive != null" >
         #{linksautomotive,jdbcType=VARCHAR},
       </if>
-      <if test="osramBestnr != null">
+      <if test="osramBestnr != null" >
         #{osramBestnr,jdbcType=VARCHAR},
       </if>
-      <if test="osramEan != null">
+      <if test="osramEan != null" >
         #{osramEan,jdbcType=VARCHAR},
       </if>
-      <if test="osramEce != null">
+      <if test="osramEce != null" >
         #{osramEce,jdbcType=VARCHAR},
       </if>
-      <if test="pillarId != null">
+      <if test="pillarId != null" >
         #{pillarId,jdbcType=INTEGER},
       </if>
-      <if test="pillarImage != null">
+      <if test="pillarImage != null" >
         #{pillarImage,jdbcType=VARCHAR},
       </if>
-      <if test="pillarName != null">
+      <if test="pillarName != null" >
         #{pillarName,jdbcType=VARCHAR},
       </if>
-      <if test="prio != null">
+      <if test="prio != null" >
         #{prio,jdbcType=VARCHAR},
       </if>
-      <if test="productImage != null">
+      <if test="productImage != null" >
         #{productImage,jdbcType=VARCHAR},
       </if>
-      <if test="productZmp != null">
+      <if test="productZmp != null" >
         #{productZmp,jdbcType=VARCHAR},
       </if>
-      <if test="usp != null">
+      <if test="usp != null" >
         #{usp,jdbcType=VARCHAR},
-      </if>
-      <if test="bulletList != null">
-        #{bulletList,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.sealight.entity.LightInfosBean">
+  <update id="updateByPrimaryKeySelective" parameterType="com.sealight.osram.entity.LightInfosBean" >
     update t_light_infos
-    <set>
-      <if test="useId != null">
+    <set >
+      <if test="useId != null" >
         use_id = #{useId,jdbcType=INTEGER},
       </if>
-      <if test="typeId != null">
+      <if test="typeId != null" >
         type_id = #{typeId,jdbcType=INTEGER},
       </if>
-      <if test="technologyId != null">
+      <if test="technologyId != null" >
         technology_id = #{technologyId,jdbcType=INTEGER},
       </if>
-      <if test="order != null">
+      <if test="order != null" >
         order = #{order,jdbcType=INTEGER},
       </if>
-      <if test="lampInfo != null">
+      <if test="bulletList != null" >
+        bullet_list = #{bulletList,jdbcType=VARCHAR},
+      </if>
+      <if test="lampInfo != null" >
         lamp_info = #{lampInfo,jdbcType=VARCHAR},
       </if>
-      <if test="linecardId != null">
+      <if test="linecardId != null" >
         linecard_id = #{linecardId,jdbcType=INTEGER},
       </if>
-      <if test="linecardName != null">
+      <if test="linecardName != null" >
         linecard_name = #{linecardName,jdbcType=VARCHAR},
       </if>
-      <if test="linksautomotive != null">
+      <if test="linksautomotive != null" >
         linksAutomotive = #{linksautomotive,jdbcType=VARCHAR},
       </if>
-      <if test="osramBestnr != null">
+      <if test="osramBestnr != null" >
         osram_bestnr = #{osramBestnr,jdbcType=VARCHAR},
       </if>
-      <if test="osramEan != null">
+      <if test="osramEan != null" >
         osram_ean = #{osramEan,jdbcType=VARCHAR},
       </if>
-      <if test="osramEce != null">
+      <if test="osramEce != null" >
         osram_ece = #{osramEce,jdbcType=VARCHAR},
       </if>
-      <if test="pillarId != null">
+      <if test="pillarId != null" >
         pillar_id = #{pillarId,jdbcType=INTEGER},
       </if>
-      <if test="pillarImage != null">
+      <if test="pillarImage != null" >
         pillar_image = #{pillarImage,jdbcType=VARCHAR},
       </if>
-      <if test="pillarName != null">
+      <if test="pillarName != null" >
         pillar_name = #{pillarName,jdbcType=VARCHAR},
       </if>
-      <if test="prio != null">
+      <if test="prio != null" >
         prio = #{prio,jdbcType=VARCHAR},
       </if>
-      <if test="productImage != null">
+      <if test="productImage != null" >
         product_image = #{productImage,jdbcType=VARCHAR},
       </if>
-      <if test="productZmp != null">
+      <if test="productZmp != null" >
         product_zmp = #{productZmp,jdbcType=VARCHAR},
       </if>
-      <if test="usp != null">
+      <if test="usp != null" >
         usp = #{usp,jdbcType=VARCHAR},
-      </if>
-      <if test="bulletList != null">
-        bullet_list = #{bulletList,jdbcType=LONGVARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.sealight.entity.LightInfosBean">
+  <update id="updateByPrimaryKey" parameterType="com.sealight.osram.entity.LightInfosBean" >
     update t_light_infos
     set use_id = #{useId,jdbcType=INTEGER},
       type_id = #{typeId,jdbcType=INTEGER},
       technology_id = #{technologyId,jdbcType=INTEGER},
       order = #{order,jdbcType=INTEGER},
-      lamp_info = #{lampInfo,jdbcType=VARCHAR},
-      linecard_id = #{linecardId,jdbcType=INTEGER},
-      linecard_name = #{linecardName,jdbcType=VARCHAR},
-      linksAutomotive = #{linksautomotive,jdbcType=VARCHAR},
-      osram_bestnr = #{osramBestnr,jdbcType=VARCHAR},
-      osram_ean = #{osramEan,jdbcType=VARCHAR},
-      osram_ece = #{osramEce,jdbcType=VARCHAR},
-      pillar_id = #{pillarId,jdbcType=INTEGER},
-      pillar_image = #{pillarImage,jdbcType=VARCHAR},
-      pillar_name = #{pillarName,jdbcType=VARCHAR},
-      prio = #{prio,jdbcType=VARCHAR},
-      product_image = #{productImage,jdbcType=VARCHAR},
-      product_zmp = #{productZmp,jdbcType=VARCHAR},
-      usp = #{usp,jdbcType=VARCHAR},
-      bullet_list = #{bulletList,jdbcType=LONGVARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.sealight.entity.LightInfosBean">
-    update t_light_infos
-    set use_id = #{useId,jdbcType=INTEGER},
-      type_id = #{typeId,jdbcType=INTEGER},
-      technology_id = #{technologyId,jdbcType=INTEGER},
-      order = #{order,jdbcType=INTEGER},
-      lamp_info = #{lampInfo,jdbcType=VARCHAR},
-      linecard_id = #{linecardId,jdbcType=INTEGER},
-      linecard_name = #{linecardName,jdbcType=VARCHAR},
-      linksAutomotive = #{linksautomotive,jdbcType=VARCHAR},
-      osram_bestnr = #{osramBestnr,jdbcType=VARCHAR},
-      osram_ean = #{osramEan,jdbcType=VARCHAR},
-      osram_ece = #{osramEce,jdbcType=VARCHAR},
-      pillar_id = #{pillarId,jdbcType=INTEGER},
-      pillar_image = #{pillarImage,jdbcType=VARCHAR},
-      pillar_name = #{pillarName,jdbcType=VARCHAR},
-      prio = #{prio,jdbcType=VARCHAR},
-      product_image = #{productImage,jdbcType=VARCHAR},
-      product_zmp = #{productZmp,jdbcType=VARCHAR},
-      usp = #{usp,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <resultMap id="BaseResultMap" type="com.sealight.entity.LightInfosBean">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="use_id" jdbcType="INTEGER" property="useId" />
-    <result column="type_id" jdbcType="INTEGER" property="typeId" />
-    <result column="technology_id" jdbcType="INTEGER" property="technologyId" />
-    <result column="order" jdbcType="INTEGER" property="order" />
-    <result column="lamp_info" jdbcType="VARCHAR" property="lampInfo" />
-    <result column="linecard_id" jdbcType="INTEGER" property="linecardId" />
-    <result column="linecard_name" jdbcType="VARCHAR" property="linecardName" />
-    <result column="linksAutomotive" jdbcType="VARCHAR" property="linksautomotive" />
-    <result column="osram_bestnr" jdbcType="VARCHAR" property="osramBestnr" />
-    <result column="osram_ean" jdbcType="VARCHAR" property="osramEan" />
-    <result column="osram_ece" jdbcType="VARCHAR" property="osramEce" />
-    <result column="pillar_id" jdbcType="INTEGER" property="pillarId" />
-    <result column="pillar_image" jdbcType="VARCHAR" property="pillarImage" />
-    <result column="pillar_name" jdbcType="VARCHAR" property="pillarName" />
-    <result column="prio" jdbcType="VARCHAR" property="prio" />
-    <result column="product_image" jdbcType="VARCHAR" property="productImage" />
-    <result column="product_zmp" jdbcType="VARCHAR" property="productZmp" />
-    <result column="usp" jdbcType="VARCHAR" property="usp" />
-  </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.sealight.entity.LightInfosBean">
-    <result column="bullet_list" jdbcType="LONGVARCHAR" property="bulletList" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, use_id, type_id, technology_id, order, lamp_info, linecard_id, linecard_name, 
-    linksAutomotive, osram_bestnr, osram_ean, osram_ece, pillar_id, pillar_image, pillar_name, 
-    prio, product_image, product_zmp, usp
-  </sql>
-  <sql id="Blob_Column_List">
-    bullet_list
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
-    select 'true' as QUERYID,
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from t_light_infos
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from t_light_infos
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.sealight.entity.LightInfosBean">
-    insert into t_light_infos (id, use_id, type_id, 
-      technology_id, order, lamp_info, 
-      linecard_id, linecard_name, linksAutomotive, 
-      osram_bestnr, osram_ean, osram_ece, 
-      pillar_id, pillar_image, pillar_name, 
-      prio, product_image, product_zmp, 
-      usp, bullet_list)
-    values (#{id,jdbcType=INTEGER}, #{useId,jdbcType=INTEGER}, #{typeId,jdbcType=INTEGER}, 
-      #{technologyId,jdbcType=INTEGER}, #{order,jdbcType=INTEGER}, #{lampInfo,jdbcType=VARCHAR}, 
-      #{linecardId,jdbcType=INTEGER}, #{linecardName,jdbcType=VARCHAR}, #{linksautomotive,jdbcType=VARCHAR}, 
-      #{osramBestnr,jdbcType=VARCHAR}, #{osramEan,jdbcType=VARCHAR}, #{osramEce,jdbcType=VARCHAR}, 
-      #{pillarId,jdbcType=INTEGER}, #{pillarImage,jdbcType=VARCHAR}, #{pillarName,jdbcType=VARCHAR}, 
-      #{prio,jdbcType=VARCHAR}, #{productImage,jdbcType=VARCHAR}, #{productZmp,jdbcType=VARCHAR}, 
-      #{usp,jdbcType=VARCHAR}, #{bulletList,jdbcType=LONGVARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.sealight.entity.LightInfosBean">
-    insert into t_light_infos
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="useId != null">
-        use_id,
-      </if>
-      <if test="typeId != null">
-        type_id,
-      </if>
-      <if test="technologyId != null">
-        technology_id,
-      </if>
-      <if test="order != null">
-        order,
-      </if>
-      <if test="lampInfo != null">
-        lamp_info,
-      </if>
-      <if test="linecardId != null">
-        linecard_id,
-      </if>
-      <if test="linecardName != null">
-        linecard_name,
-      </if>
-      <if test="linksautomotive != null">
-        linksAutomotive,
-      </if>
-      <if test="osramBestnr != null">
-        osram_bestnr,
-      </if>
-      <if test="osramEan != null">
-        osram_ean,
-      </if>
-      <if test="osramEce != null">
-        osram_ece,
-      </if>
-      <if test="pillarId != null">
-        pillar_id,
-      </if>
-      <if test="pillarImage != null">
-        pillar_image,
-      </if>
-      <if test="pillarName != null">
-        pillar_name,
-      </if>
-      <if test="prio != null">
-        prio,
-      </if>
-      <if test="productImage != null">
-        product_image,
-      </if>
-      <if test="productZmp != null">
-        product_zmp,
-      </if>
-      <if test="usp != null">
-        usp,
-      </if>
-      <if test="bulletList != null">
-        bullet_list,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="useId != null">
-        #{useId,jdbcType=INTEGER},
-      </if>
-      <if test="typeId != null">
-        #{typeId,jdbcType=INTEGER},
-      </if>
-      <if test="technologyId != null">
-        #{technologyId,jdbcType=INTEGER},
-      </if>
-      <if test="order != null">
-        #{order,jdbcType=INTEGER},
-      </if>
-      <if test="lampInfo != null">
-        #{lampInfo,jdbcType=VARCHAR},
-      </if>
-      <if test="linecardId != null">
-        #{linecardId,jdbcType=INTEGER},
-      </if>
-      <if test="linecardName != null">
-        #{linecardName,jdbcType=VARCHAR},
-      </if>
-      <if test="linksautomotive != null">
-        #{linksautomotive,jdbcType=VARCHAR},
-      </if>
-      <if test="osramBestnr != null">
-        #{osramBestnr,jdbcType=VARCHAR},
-      </if>
-      <if test="osramEan != null">
-        #{osramEan,jdbcType=VARCHAR},
-      </if>
-      <if test="osramEce != null">
-        #{osramEce,jdbcType=VARCHAR},
-      </if>
-      <if test="pillarId != null">
-        #{pillarId,jdbcType=INTEGER},
-      </if>
-      <if test="pillarImage != null">
-        #{pillarImage,jdbcType=VARCHAR},
-      </if>
-      <if test="pillarName != null">
-        #{pillarName,jdbcType=VARCHAR},
-      </if>
-      <if test="prio != null">
-        #{prio,jdbcType=VARCHAR},
-      </if>
-      <if test="productImage != null">
-        #{productImage,jdbcType=VARCHAR},
-      </if>
-      <if test="productZmp != null">
-        #{productZmp,jdbcType=VARCHAR},
-      </if>
-      <if test="usp != null">
-        #{usp,jdbcType=VARCHAR},
-      </if>
-      <if test="bulletList != null">
-        #{bulletList,jdbcType=LONGVARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.sealight.entity.LightInfosBean">
-    update t_light_infos
-    <set>
-      <if test="useId != null">
-        use_id = #{useId,jdbcType=INTEGER},
-      </if>
-      <if test="typeId != null">
-        type_id = #{typeId,jdbcType=INTEGER},
-      </if>
-      <if test="technologyId != null">
-        technology_id = #{technologyId,jdbcType=INTEGER},
-      </if>
-      <if test="order != null">
-        order = #{order,jdbcType=INTEGER},
-      </if>
-      <if test="lampInfo != null">
-        lamp_info = #{lampInfo,jdbcType=VARCHAR},
-      </if>
-      <if test="linecardId != null">
-        linecard_id = #{linecardId,jdbcType=INTEGER},
-      </if>
-      <if test="linecardName != null">
-        linecard_name = #{linecardName,jdbcType=VARCHAR},
-      </if>
-      <if test="linksautomotive != null">
-        linksAutomotive = #{linksautomotive,jdbcType=VARCHAR},
-      </if>
-      <if test="osramBestnr != null">
-        osram_bestnr = #{osramBestnr,jdbcType=VARCHAR},
-      </if>
-      <if test="osramEan != null">
-        osram_ean = #{osramEan,jdbcType=VARCHAR},
-      </if>
-      <if test="osramEce != null">
-        osram_ece = #{osramEce,jdbcType=VARCHAR},
-      </if>
-      <if test="pillarId != null">
-        pillar_id = #{pillarId,jdbcType=INTEGER},
-      </if>
-      <if test="pillarImage != null">
-        pillar_image = #{pillarImage,jdbcType=VARCHAR},
-      </if>
-      <if test="pillarName != null">
-        pillar_name = #{pillarName,jdbcType=VARCHAR},
-      </if>
-      <if test="prio != null">
-        prio = #{prio,jdbcType=VARCHAR},
-      </if>
-      <if test="productImage != null">
-        product_image = #{productImage,jdbcType=VARCHAR},
-      </if>
-      <if test="productZmp != null">
-        product_zmp = #{productZmp,jdbcType=VARCHAR},
-      </if>
-      <if test="usp != null">
-        usp = #{usp,jdbcType=VARCHAR},
-      </if>
-      <if test="bulletList != null">
-        bullet_list = #{bulletList,jdbcType=LONGVARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.sealight.entity.LightInfosBean">
-    update t_light_infos
-    set use_id = #{useId,jdbcType=INTEGER},
-      type_id = #{typeId,jdbcType=INTEGER},
-      technology_id = #{technologyId,jdbcType=INTEGER},
-      order = #{order,jdbcType=INTEGER},
-      lamp_info = #{lampInfo,jdbcType=VARCHAR},
-      linecard_id = #{linecardId,jdbcType=INTEGER},
-      linecard_name = #{linecardName,jdbcType=VARCHAR},
-      linksAutomotive = #{linksautomotive,jdbcType=VARCHAR},
-      osram_bestnr = #{osramBestnr,jdbcType=VARCHAR},
-      osram_ean = #{osramEan,jdbcType=VARCHAR},
-      osram_ece = #{osramEce,jdbcType=VARCHAR},
-      pillar_id = #{pillarId,jdbcType=INTEGER},
-      pillar_image = #{pillarImage,jdbcType=VARCHAR},
-      pillar_name = #{pillarName,jdbcType=VARCHAR},
-      prio = #{prio,jdbcType=VARCHAR},
-      product_image = #{productImage,jdbcType=VARCHAR},
-      product_zmp = #{productZmp,jdbcType=VARCHAR},
-      usp = #{usp,jdbcType=VARCHAR},
-      bullet_list = #{bulletList,jdbcType=LONGVARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.sealight.entity.LightInfosBean">
-    update t_light_infos
-    set use_id = #{useId,jdbcType=INTEGER},
-      type_id = #{typeId,jdbcType=INTEGER},
-      technology_id = #{technologyId,jdbcType=INTEGER},
-      order = #{order,jdbcType=INTEGER},
-      lamp_info = #{lampInfo,jdbcType=VARCHAR},
-      linecard_id = #{linecardId,jdbcType=INTEGER},
-      linecard_name = #{linecardName,jdbcType=VARCHAR},
-      linksAutomotive = #{linksautomotive,jdbcType=VARCHAR},
-      osram_bestnr = #{osramBestnr,jdbcType=VARCHAR},
-      osram_ean = #{osramEan,jdbcType=VARCHAR},
-      osram_ece = #{osramEce,jdbcType=VARCHAR},
-      pillar_id = #{pillarId,jdbcType=INTEGER},
-      pillar_image = #{pillarImage,jdbcType=VARCHAR},
-      pillar_name = #{pillarName,jdbcType=VARCHAR},
-      prio = #{prio,jdbcType=VARCHAR},
-      product_image = #{productImage,jdbcType=VARCHAR},
-      product_zmp = #{productZmp,jdbcType=VARCHAR},
-      usp = #{usp,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <resultMap id="BaseResultMap" type="com.osram.osram.entity.LightInfosBean">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="use_id" jdbcType="INTEGER" property="useId" />
-    <result column="type_id" jdbcType="INTEGER" property="typeId" />
-    <result column="technology_id" jdbcType="INTEGER" property="technologyId" />
-    <result column="order" jdbcType="INTEGER" property="order" />
-    <result column="lamp_info" jdbcType="VARCHAR" property="lampInfo" />
-    <result column="linecard_id" jdbcType="INTEGER" property="linecardId" />
-    <result column="linecard_name" jdbcType="VARCHAR" property="linecardName" />
-    <result column="linksAutomotive" jdbcType="VARCHAR" property="linksautomotive" />
-    <result column="osram_bestnr" jdbcType="VARCHAR" property="osramBestnr" />
-    <result column="osram_ean" jdbcType="VARCHAR" property="osramEan" />
-    <result column="osram_ece" jdbcType="VARCHAR" property="osramEce" />
-    <result column="pillar_id" jdbcType="INTEGER" property="pillarId" />
-    <result column="pillar_image" jdbcType="VARCHAR" property="pillarImage" />
-    <result column="pillar_name" jdbcType="VARCHAR" property="pillarName" />
-    <result column="prio" jdbcType="VARCHAR" property="prio" />
-    <result column="product_image" jdbcType="VARCHAR" property="productImage" />
-    <result column="product_zmp" jdbcType="VARCHAR" property="productZmp" />
-    <result column="usp" jdbcType="VARCHAR" property="usp" />
-  </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.osram.osram.entity.LightInfosBean">
-    <result column="bullet_list" jdbcType="LONGVARCHAR" property="bulletList" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, use_id, type_id, technology_id, order, lamp_info, linecard_id, linecard_name, 
-    linksAutomotive, osram_bestnr, osram_ean, osram_ece, pillar_id, pillar_image, pillar_name, 
-    prio, product_image, product_zmp, usp
-  </sql>
-  <sql id="Blob_Column_List">
-    bullet_list
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
-    select 'true' as QUERYID,
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from t_light_infos
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <select id="findByKeys" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from t_light_infos
-    where type_id = #{type_id,jdbcType=INTEGER}
-    and use_id = #{use_id,jdbcType=INTEGER}
-    and technology_id = #{technology_id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from t_light_infos
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.osram.osram.entity.LightInfosBean">
-    insert into t_light_infos (id, use_id, type_id, 
-      technology_id, order, lamp_info, 
-      linecard_id, linecard_name, linksAutomotive, 
-      osram_bestnr, osram_ean, osram_ece, 
-      pillar_id, pillar_image, pillar_name, 
-      prio, product_image, product_zmp, 
-      usp, bullet_list)
-    values (#{id,jdbcType=INTEGER}, #{useId,jdbcType=INTEGER}, #{typeId,jdbcType=INTEGER}, 
-      #{technologyId,jdbcType=INTEGER}, #{order,jdbcType=INTEGER}, #{lampInfo,jdbcType=VARCHAR}, 
-      #{linecardId,jdbcType=INTEGER}, #{linecardName,jdbcType=VARCHAR}, #{linksautomotive,jdbcType=VARCHAR}, 
-      #{osramBestnr,jdbcType=VARCHAR}, #{osramEan,jdbcType=VARCHAR}, #{osramEce,jdbcType=VARCHAR}, 
-      #{pillarId,jdbcType=INTEGER}, #{pillarImage,jdbcType=VARCHAR}, #{pillarName,jdbcType=VARCHAR}, 
-      #{prio,jdbcType=VARCHAR}, #{productImage,jdbcType=VARCHAR}, #{productZmp,jdbcType=VARCHAR}, 
-      #{usp,jdbcType=VARCHAR}, #{bulletList,jdbcType=LONGVARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.osram.osram.entity.LightInfosBean">
-    insert into t_light_infos
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="useId != null">
-        use_id,
-      </if>
-      <if test="typeId != null">
-        type_id,
-      </if>
-      <if test="technologyId != null">
-        technology_id,
-      </if>
-      <if test="order != null">
-        order,
-      </if>
-      <if test="lampInfo != null">
-        lamp_info,
-      </if>
-      <if test="linecardId != null">
-        linecard_id,
-      </if>
-      <if test="linecardName != null">
-        linecard_name,
-      </if>
-      <if test="linksautomotive != null">
-        linksAutomotive,
-      </if>
-      <if test="osramBestnr != null">
-        osram_bestnr,
-      </if>
-      <if test="osramEan != null">
-        osram_ean,
-      </if>
-      <if test="osramEce != null">
-        osram_ece,
-      </if>
-      <if test="pillarId != null">
-        pillar_id,
-      </if>
-      <if test="pillarImage != null">
-        pillar_image,
-      </if>
-      <if test="pillarName != null">
-        pillar_name,
-      </if>
-      <if test="prio != null">
-        prio,
-      </if>
-      <if test="productImage != null">
-        product_image,
-      </if>
-      <if test="productZmp != null">
-        product_zmp,
-      </if>
-      <if test="usp != null">
-        usp,
-      </if>
-      <if test="bulletList != null">
-        bullet_list,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="useId != null">
-        #{useId,jdbcType=INTEGER},
-      </if>
-      <if test="typeId != null">
-        #{typeId,jdbcType=INTEGER},
-      </if>
-      <if test="technologyId != null">
-        #{technologyId,jdbcType=INTEGER},
-      </if>
-      <if test="order != null">
-        #{order,jdbcType=INTEGER},
-      </if>
-      <if test="lampInfo != null">
-        #{lampInfo,jdbcType=VARCHAR},
-      </if>
-      <if test="linecardId != null">
-        #{linecardId,jdbcType=INTEGER},
-      </if>
-      <if test="linecardName != null">
-        #{linecardName,jdbcType=VARCHAR},
-      </if>
-      <if test="linksautomotive != null">
-        #{linksautomotive,jdbcType=VARCHAR},
-      </if>
-      <if test="osramBestnr != null">
-        #{osramBestnr,jdbcType=VARCHAR},
-      </if>
-      <if test="osramEan != null">
-        #{osramEan,jdbcType=VARCHAR},
-      </if>
-      <if test="osramEce != null">
-        #{osramEce,jdbcType=VARCHAR},
-      </if>
-      <if test="pillarId != null">
-        #{pillarId,jdbcType=INTEGER},
-      </if>
-      <if test="pillarImage != null">
-        #{pillarImage,jdbcType=VARCHAR},
-      </if>
-      <if test="pillarName != null">
-        #{pillarName,jdbcType=VARCHAR},
-      </if>
-      <if test="prio != null">
-        #{prio,jdbcType=VARCHAR},
-      </if>
-      <if test="productImage != null">
-        #{productImage,jdbcType=VARCHAR},
-      </if>
-      <if test="productZmp != null">
-        #{productZmp,jdbcType=VARCHAR},
-      </if>
-      <if test="usp != null">
-        #{usp,jdbcType=VARCHAR},
-      </if>
-      <if test="bulletList != null">
-        #{bulletList,jdbcType=LONGVARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.osram.osram.entity.LightInfosBean">
-    update t_light_infos
-    <set>
-      <if test="useId != null">
-        use_id = #{useId,jdbcType=INTEGER},
-      </if>
-      <if test="typeId != null">
-        type_id = #{typeId,jdbcType=INTEGER},
-      </if>
-      <if test="technologyId != null">
-        technology_id = #{technologyId,jdbcType=INTEGER},
-      </if>
-      <if test="order != null">
-        order = #{order,jdbcType=INTEGER},
-      </if>
-      <if test="lampInfo != null">
-        lamp_info = #{lampInfo,jdbcType=VARCHAR},
-      </if>
-      <if test="linecardId != null">
-        linecard_id = #{linecardId,jdbcType=INTEGER},
-      </if>
-      <if test="linecardName != null">
-        linecard_name = #{linecardName,jdbcType=VARCHAR},
-      </if>
-      <if test="linksautomotive != null">
-        linksAutomotive = #{linksautomotive,jdbcType=VARCHAR},
-      </if>
-      <if test="osramBestnr != null">
-        osram_bestnr = #{osramBestnr,jdbcType=VARCHAR},
-      </if>
-      <if test="osramEan != null">
-        osram_ean = #{osramEan,jdbcType=VARCHAR},
-      </if>
-      <if test="osramEce != null">
-        osram_ece = #{osramEce,jdbcType=VARCHAR},
-      </if>
-      <if test="pillarId != null">
-        pillar_id = #{pillarId,jdbcType=INTEGER},
-      </if>
-      <if test="pillarImage != null">
-        pillar_image = #{pillarImage,jdbcType=VARCHAR},
-      </if>
-      <if test="pillarName != null">
-        pillar_name = #{pillarName,jdbcType=VARCHAR},
-      </if>
-      <if test="prio != null">
-        prio = #{prio,jdbcType=VARCHAR},
-      </if>
-      <if test="productImage != null">
-        product_image = #{productImage,jdbcType=VARCHAR},
-      </if>
-      <if test="productZmp != null">
-        product_zmp = #{productZmp,jdbcType=VARCHAR},
-      </if>
-      <if test="usp != null">
-        usp = #{usp,jdbcType=VARCHAR},
-      </if>
-      <if test="bulletList != null">
-        bullet_list = #{bulletList,jdbcType=LONGVARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.osram.osram.entity.LightInfosBean">
-    update t_light_infos
-    set use_id = #{useId,jdbcType=INTEGER},
-      type_id = #{typeId,jdbcType=INTEGER},
-      technology_id = #{technologyId,jdbcType=INTEGER},
-      order = #{order,jdbcType=INTEGER},
-      lamp_info = #{lampInfo,jdbcType=VARCHAR},
-      linecard_id = #{linecardId,jdbcType=INTEGER},
-      linecard_name = #{linecardName,jdbcType=VARCHAR},
-      linksAutomotive = #{linksautomotive,jdbcType=VARCHAR},
-      osram_bestnr = #{osramBestnr,jdbcType=VARCHAR},
-      osram_ean = #{osramEan,jdbcType=VARCHAR},
-      osram_ece = #{osramEce,jdbcType=VARCHAR},
-      pillar_id = #{pillarId,jdbcType=INTEGER},
-      pillar_image = #{pillarImage,jdbcType=VARCHAR},
-      pillar_name = #{pillarName,jdbcType=VARCHAR},
-      prio = #{prio,jdbcType=VARCHAR},
-      product_image = #{productImage,jdbcType=VARCHAR},
-      product_zmp = #{productZmp,jdbcType=VARCHAR},
-      usp = #{usp,jdbcType=VARCHAR},
-      bullet_list = #{bulletList,jdbcType=LONGVARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.osram.osram.entity.LightInfosBean">
-    update t_light_infos
-    set use_id = #{useId,jdbcType=INTEGER},
-      type_id = #{typeId,jdbcType=INTEGER},
-      technology_id = #{technologyId,jdbcType=INTEGER},
-      order = #{order,jdbcType=INTEGER},
+      bullet_list = #{bulletList,jdbcType=VARCHAR},
       lamp_info = #{lampInfo,jdbcType=VARCHAR},
       linecard_id = #{linecardId,jdbcType=INTEGER},
       linecard_name = #{linecardName,jdbcType=VARCHAR},

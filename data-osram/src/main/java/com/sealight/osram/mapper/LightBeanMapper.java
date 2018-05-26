@@ -1,6 +1,6 @@
-package com.osram.osram.mapper;
+package com.sealight.osram.mapper;
 
-import com.osram.osram.entity.LightBean;
+import com.sealight.osram.entity.LightBean;
 
 public interface LightBeanMapper {
     int deleteByPrimaryKey(Integer id);

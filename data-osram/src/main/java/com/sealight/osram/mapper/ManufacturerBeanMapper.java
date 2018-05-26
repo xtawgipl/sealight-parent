@@ -1,6 +1,6 @@
-package com.osram.osram.mapper;
+package com.sealight.osram.mapper;
 
-import com.osram.osram.entity.ManufacturerBean;
+import com.sealight.osram.entity.ManufacturerBean;
 
 public interface ManufacturerBeanMapper {
     int deleteByPrimaryKey(Integer manufacturerId);

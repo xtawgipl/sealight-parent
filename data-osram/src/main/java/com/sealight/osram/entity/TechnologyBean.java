@@ -1,4 +1,4 @@
-package com.osram.osram.entity;
+package com.sealight.osram.entity;
 
 public class TechnologyBean {
     private Integer id;

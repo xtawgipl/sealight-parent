@@ -1,6 +1,6 @@
-package com.osram.osram.mapper;
+package com.sealight.osram.mapper;
 
-import com.osram.osram.entity.LightInfosBean;
+import com.sealight.osram.entity.LightInfosBean;
 
 public interface LightInfosBeanMapper {
     int deleteByPrimaryKey(Integer id);
@@ -13,10 +13,5 @@ public interface LightInfosBeanMapper {
 
     int updateByPrimaryKeySelective(LightInfosBean record);
 
-    int updateByPrimaryKeyWithBLOBs(LightInfosBean record);
-
     int updateByPrimaryKey(LightInfosBean record);
-
-    LightInfosBean findByKeys(LightInfosBean record);
-
 }
