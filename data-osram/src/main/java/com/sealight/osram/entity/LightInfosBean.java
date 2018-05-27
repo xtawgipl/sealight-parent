@@ -41,6 +41,33 @@ public class LightInfosBean {
 
     private String usp;
 
+    public LightInfosBean(){
+
+    }
+
+
+    public LightInfosBean(Integer useId, Integer typeId, Integer technologyId, Integer order, String bulletList, String lampInfo, Integer linecardId, String linecardName, String linksautomotive, String osramBestnr, String osramEan, String osramEce, Integer pillarId, String pillarImage, String pillarName, String prio, String productImage, String productZmp, String usp) {
+        this.useId = useId;
+        this.typeId = typeId;
+        this.technologyId = technologyId;
+        this.order = order;
+        this.bulletList = bulletList;
+        this.lampInfo = lampInfo;
+        this.linecardId = linecardId;
+        this.linecardName = linecardName;
+        this.linksautomotive = linksautomotive;
+        this.osramBestnr = osramBestnr;
+        this.osramEan = osramEan;
+        this.osramEce = osramEce;
+        this.pillarId = pillarId;
+        this.pillarImage = pillarImage;
+        this.pillarName = pillarName;
+        this.prio = prio;
+        this.productImage = productImage;
+        this.productZmp = productZmp;
+        this.usp = usp;
+    }
+
     public Integer getId() {
         return id;
     }

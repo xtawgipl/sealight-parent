@@ -5,7 +5,7 @@
 
 <generatorConfiguration>
 	<!-- 指定数据连接驱动jar地址 -->
-    <classPathEntry location="E:/repo/mysql/mysql-connector-java/5.1.39/mysql-connector-java-5.1.39.jar"/>
+    <classPathEntry location="E:/maven/repo/mysql/mysql-connector-java/5.1.39/mysql-connector-java-5.1.39.jar"/>
             
     <context id="my" targetRuntime="MyBatis3">
         <commentGenerator>
@@ -98,9 +98,20 @@
                enableInsert="true"
                selectByPrimaryKeyQueryId="true"
                enableSelectByPrimaryKey="true"/>-->
-        <table
+       <!-- <table
                tableName="t_type"
                domainObjectName="TypeBean"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false"
+               enableInsert="true"
+               selectByPrimaryKeyQueryId="true"
+               enableSelectByPrimaryKey="true"/>-->
+        <table
+               tableName="t_model"
+               domainObjectName="ModelBean"
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"

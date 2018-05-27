@@ -11,6 +11,17 @@ public class TechnologyBean {
 
     private String technologyName;
 
+    public TechnologyBean(){
+
+    }
+
+    public TechnologyBean(Integer useId, Integer typeId, Integer technologyId, String technologyName) {
+        this.useId = useId;
+        this.typeId = typeId;
+        this.technologyId = technologyId;
+        this.technologyName = technologyName;
+    }
+
     public Integer getId() {
         return id;
     }

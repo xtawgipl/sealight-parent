@@ -5,6 +5,14 @@ public class ManufacturerBean {
 
     private String manufacturerName;
 
+    public ManufacturerBean() {
+    }
+
+    public ManufacturerBean(Integer manufacturerId, String manufacturerName) {
+        this.manufacturerId = manufacturerId;
+        this.manufacturerName = manufacturerName;
+    }
+
     public Integer getManufacturerId() {
         return manufacturerId;
     }

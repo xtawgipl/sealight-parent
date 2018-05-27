@@ -24,7 +24,7 @@
     <result column="usp" property="usp" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, use_id, type_id, technology_id, order, bullet_list, lamp_info, linecard_id, linecard_name, 
+    id, use_id, type_id, technology_id, `order`, bullet_list, lamp_info, linecard_id, linecard_name,
     linksAutomotive, osram_bestnr, osram_ean, osram_ece, pillar_id, pillar_image, pillar_name, 
     prio, product_image, product_zmp, usp
   </sql>
@@ -48,7 +48,7 @@
   </delete>
   <insert id="insert" parameterType="com.sealight.osram.entity.LightInfosBean" >
     insert into t_light_infos (id, use_id, type_id, 
-      technology_id, order, bullet_list, 
+      technology_id, `order`, bullet_list,
       lamp_info, linecard_id, linecard_name, 
       linksAutomotive, osram_bestnr, osram_ean, 
       osram_ece, pillar_id, pillar_image, 
@@ -257,7 +257,7 @@
     set use_id = #{useId,jdbcType=INTEGER},
       type_id = #{typeId,jdbcType=INTEGER},
       technology_id = #{technologyId,jdbcType=INTEGER},
-      order = #{order,jdbcType=INTEGER},
+      `order` = #{order,jdbcType=INTEGER},
       bullet_list = #{bulletList,jdbcType=VARCHAR},
       lamp_info = #{lampInfo,jdbcType=VARCHAR},
       linecard_id = #{linecardId,jdbcType=INTEGER},

@@ -7,6 +7,15 @@ public class UrlanagerBean {
 
     private String url;
 
+    public UrlanagerBean(){
+
+    }
+
+    public UrlanagerBean(String typeName, String url) {
+        this.typeName = typeName;
+        this.url = url;
+    }
+
     public Integer getId() {
         return id;
     }

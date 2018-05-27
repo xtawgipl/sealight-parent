@@ -29,6 +29,27 @@ public class TypeBean {
 
     private String kba;
 
+    public TypeBean(){
+
+    }
+
+    public TypeBean(Integer typeId, Integer modelId, String typeFrom, String typeFromYear, String typeFromMonth, String typeTo, String typeToYear, String typeToMonth, String typeKw, String typeAxles, String typeTonnage, Integer variantId, String typeName, String kba) {
+        this.typeId = typeId;
+        this.modelId = modelId;
+        this.typeFrom = typeFrom;
+        this.typeFromYear = typeFromYear;
+        this.typeFromMonth = typeFromMonth;
+        this.typeTo = typeTo;
+        this.typeToYear = typeToYear;
+        this.typeToMonth = typeToMonth;
+        this.typeKw = typeKw;
+        this.typeAxles = typeAxles;
+        this.typeTonnage = typeTonnage;
+        this.variantId = variantId;
+        this.typeName = typeName;
+        this.kba = kba;
+    }
+
     public Integer getTypeId() {
         return typeId;
     }

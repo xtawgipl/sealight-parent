@@ -11,6 +11,17 @@ public class LightBean {
 
     private String useName;
 
+    public LightBean(){
+
+    }
+
+    public LightBean(Integer typeId, Integer useId, Integer posId, String useName) {
+        this.typeId = typeId;
+        this.useId = useId;
+        this.posId = posId;
+        this.useName = useName;
+    }
+
     public Integer getId() {
         return id;
     }
