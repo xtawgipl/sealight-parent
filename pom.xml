@@ -26,9 +26,9 @@
         <junit.version>4.12</junit.version>
     </properties>
     <modules>
+        <module>data-common</module>
         <module>data-osram</module>
 		<module>data-jwspeaker</module>
-        <module>data-common</module>
         <module>data-test</module>
     </modules>
     <dependencyManagement>

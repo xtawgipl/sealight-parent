@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -85,7 +84,7 @@ public class FecthService {
                                 }
                             }
                         }else{
-                            logger.error("model获取失败...");
+                            logger.error(String.format("model获取失败：url = %s; \n %s", modelUrl, modelJson));
                         }
                         urlanagerBeanMapper.insert(new UrlanagerBean("model", modelUrl));
                     }else{
@@ -93,7 +92,7 @@ public class FecthService {
                     }
                 }
             }else{
-                logger.error("品牌获取失败...");
+                logger.error(String.format("品牌获取失败：url = %s; \n %s", Constant.ALL_MANUFACTURER_URL, manufacturerJson));
             }
             urlanagerBeanMapper.insert(new UrlanagerBean("manufacturer", Constant.ALL_MANUFACTURER_URL));
         }else{
@@ -136,6 +135,8 @@ public class FecthService {
                     );
                     lightInfosBeanMapper.insert(lightInfosBean);
                 }
+            }else{
+                logger.error(String.format("lamps获取失败：url = %s; \n %s", lampsUrl, lampsJson));
             }
         }else{
             logger.info(String.format("lampsUrl : %s 已经抓取过", lampsUrl));
@@ -213,7 +214,7 @@ public class FecthService {
                                     }
                                     urlanagerBeanMapper.insert(new UrlanagerBean("technology", technologyUrl));
                                 }else{
-                                    logger.error("technology获取失败...");
+                                    logger.error(String.format("technology获取失败：url = %s; \n %s", technologyUrl, technologyJson));
                                 }
                             }else{
                                 logger.info(String.format("technologyUrl : %s 已经抓取过", technologyUrl));
@@ -221,7 +222,7 @@ public class FecthService {
                         }
                         urlanagerBeanMapper.insert(new UrlanagerBean("light", lightUrl));
                     }else{
-                        logger.error("light获取失败...");
+                        logger.error(String.format("light获取失败：url = %s; \n %s", lightUrl, lightJson));
                     }
                 }else{
                     logger.info(String.format("lightUrl : %s 已经抓取过", lightUrl));
@@ -229,7 +230,7 @@ public class FecthService {
             }
             urlanagerBeanMapper.insert(new UrlanagerBean("type", typeUrl));
         }else{
-            logger.error("type获取失败...");
+            logger.error(String.format("type获取失败：url = %s; \n %s", typeUrl, typeJson));
         }
     }
 }

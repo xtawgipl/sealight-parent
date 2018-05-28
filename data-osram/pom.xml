@@ -3,6 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>data-osram</artifactId>
 	<name>data-osram</name>
+	<packaging>jar</packaging>
 	<description>data-osram</description>
 
 	<parent>
@@ -13,7 +14,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<start-class>Application</start-class>
+		<start-class>com.sealight.Application</start-class>
 		<mybatis.generator.version>1.3.2</mybatis.generator.version>
 		<maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
 	</properties>
