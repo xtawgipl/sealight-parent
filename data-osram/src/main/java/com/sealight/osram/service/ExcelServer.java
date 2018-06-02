@@ -73,10 +73,6 @@ public class ExcelServer {
         List<LampExcelBean> lampExcelList = new ArrayList<>();
 
         Map<String, Map<String, String>> lampTitleData = getLampTitle(manufacturerBean.getManufacturerId());
-        Map<String, String> headLampMap = lampTitleData.get("headLampMap");
-        Map<String, String> innerLampmap = lampTitleData.get("innerLampmap");
-        Map<String, String> outerLampMap = lampTitleData.get("outerLampMap");
-
 
         List<ModelBean> modelList = modelBeanMapper.findByManufacturer(manufacturerBean.getManufacturerId());
 
@@ -84,6 +80,10 @@ public class ExcelServer {
             List<TypeBean> typeList = typeBeanMapper.findByModel(model.getModelId());
 
             for(TypeBean type : typeList){
+
+                Map<String, String> headLampMap = lampTitleData.get("headLampMap");
+                Map<String, String> innerLampmap = lampTitleData.get("innerLampmap");
+                Map<String, String> outerLampMap = lampTitleData.get("outerLampMap");
 
                 LampExcelBean lampExcelBean = new LampExcelBean();
                 lampExcelBean.setManufacturer(manufacturerBean.getManufacturerName());

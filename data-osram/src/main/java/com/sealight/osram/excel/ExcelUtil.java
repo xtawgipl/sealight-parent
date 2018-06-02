@@ -64,8 +64,27 @@ public class ExcelUtil {
         cellTitle.setCellStyle(styleTitle);
 
         cellTitle = rowTitle.createCell(1);
-        cellTitle.setCellValue("year");
+        cellTitle.setCellValue("type");
         cellTitle.setCellStyle(styleTitle);
+
+
+        int index = 2;
+        for(Map.Entry<String, String> headEntry : lampList.get(0).getHeadLampMap().entrySet()){
+            cellTitle = rowTitle.createCell(index++);
+            cellTitle.setCellValue(headEntry.getKey());
+            cellTitle.setCellStyle(styleTitle);
+        }
+        for(Map.Entry<String, String> innerEntry : lampList.get(0).getInnerLampmap().entrySet()){
+            cellTitle = rowTitle.createCell(index++);
+            cellTitle.setCellValue(innerEntry.getKey());
+            cellTitle.setCellStyle(styleTitle);
+        }
+        for(Map.Entry<String, String> outerEntry : lampList.get(0).getOuterLampMap().entrySet()){
+            cellTitle = rowTitle.createCell(index++);
+            cellTitle.setCellValue(outerEntry.getKey());
+            cellTitle.setCellStyle(styleTitle);
+        }
+
 
         cellTitle = rowTitle.createCell(2);
         cellTitle.setCellValue("lampName");

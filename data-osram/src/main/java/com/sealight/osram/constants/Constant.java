@@ -37,18 +37,18 @@ public class Constant {
     public final static String LAMPS_BY_USE_URL = "https://am-application.osram.info/en/getLampsByUse/%s/%s/%s.json";
 
     //前灯pos_id集合
-    public final static List<String> FRONT_POS_ID_LIST = new ArrayList<String>() {{
-        add("409");
+    public final static List<Integer> FRONT_POS_ID_LIST = new ArrayList<Integer>() {{
+        add(409);
     }};
 
     //后灯pos_id集合
-    public final static List<String> REAR_POS_ID_LIST = new ArrayList<String>() {{
-        add("410");
+    public final static List<Integer> REAR_POS_ID_LIST = new ArrayList<Integer>() {{
+        add(410);
     }};
 
     //内类pos_id集合
-    public final static List<String> INTERNAL_POS_ID_LIST = new ArrayList<String>() {{
-        add("411");
+    public final static List<Integer> INTERNAL_POS_ID_LIST = new ArrayList<Integer>() {{
+        add(411);
     }};
 
 }
