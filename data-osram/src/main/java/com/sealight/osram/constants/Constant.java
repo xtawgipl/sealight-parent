@@ -13,7 +13,7 @@ public class Constant {
 
 
     //生成的excel表存放地址
-    public final static String EXCEL_PATH = "D:/data/osram/xls/";
+    public final static String EXCEL_PATH = "/data/osram/xls/";
 
 
     //获取所有品牌如 BMW等

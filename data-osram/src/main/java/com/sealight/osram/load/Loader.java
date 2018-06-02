@@ -11,6 +11,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -37,8 +38,12 @@ public class Loader implements CommandLineRunner {
         logger.info("---------start------------------");
 //        fecthService.fetchData();
 
-        ManufacturerBean manufacturerBean = manufacturerBeanMapper.selectByPrimaryKey(1);
-        ExcelUtil.excelExport(manufacturerBean.getManufacturerName(), excelServer.getLampExcelList(manufacturerBean));
+
+        List<ManufacturerBean> manufacturerList = manufacturerBeanMapper.findAll();
+        for(ManufacturerBean manufacturerBean : manufacturerList){
+            ExcelUtil.excelExport(manufacturerBean.getManufacturerName(), excelServer.getLampExcelList(manufacturerBean));
+        }
+
         logger.info("---------end------------------");
     }
 

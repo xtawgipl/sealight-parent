@@ -19,6 +19,6 @@ pagehelper:
     defaultPageSize: 10
 ## 数据源配置
 datasource:
-    url: jdbc:mysql://119.29.26.226:3306/osram1?useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://127.0.0.1:3306/osram1?useUnicode=true&characterEncoding=utf8
     username: root
     password: root

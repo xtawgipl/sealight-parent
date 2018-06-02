@@ -14,7 +14,13 @@
     from t_manufacturer
     where manufacturer_id = #{manufacturerId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <select id="findAll" resultType="com.sealight.osram.entity.ManufacturerBean">
+
+      select
+      <include refid="Base_Column_List" />
+      from t_manufacturer
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from t_manufacturer
     where manufacturer_id = #{manufacturerId,jdbcType=INTEGER}
   </delete>
