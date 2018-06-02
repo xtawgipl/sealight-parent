@@ -23,7 +23,9 @@ public class ExcelUtil {
     public static void excelExport(String sheelName, List<LampExcelBean> lampList) {
 
         /** 表头占的行数*/
-        int headRow = 1;
+        int headRow = 2;
+
+        int index = 2;
 
         // 创建excel
         XSSFWorkbook wb = new XSSFWorkbook();
@@ -33,8 +35,46 @@ public class ExcelUtil {
 //        sheet.setDefaultColumnWidth(10);
         sheet.setDefaultRowHeight((short) 600);
 
-        // 创建一行
+
+
         XSSFRow rowTitle = sheet.createRow(0);
+
+
+        XSSFCellStyle styleTitle1 = wb.createCellStyle();
+        styleTitle1.setAlignment(HSSFCellStyle.ALIGN_CENTER);//水平居中
+        styleTitle1.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);//垂直居中
+        styleTitle1.setFillBackgroundColor(HSSFColor.DARK_BLUE.index);
+        CellRangeAddress craTitle = new CellRangeAddress(0, 0, index, index + lampList.get(0).getHeadLampMap().size() - 1);
+        sheet.addMergedRegion(craTitle);
+        XSSFCell cell = rowTitle.createCell(index);
+        cell.setCellValue("前灯");
+        cell.setCellStyle(styleTitle1);
+
+        XSSFCellStyle styleTitle2 = wb.createCellStyle();
+        styleTitle2.setAlignment(HSSFCellStyle.ALIGN_CENTER);//水平居中
+        styleTitle2.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);//垂直居中
+        styleTitle2.setFillBackgroundColor(HSSFColor.DARK_GREEN.index);
+        craTitle = new CellRangeAddress(0, 0, index + lampList.get(0).getHeadLampMap().size(),
+                index + lampList.get(0).getHeadLampMap().size() + lampList.get(0).getInnerLampmap().size() - 1);
+        sheet.addMergedRegion(craTitle);
+        cell = rowTitle.createCell(index + lampList.get(0).getHeadLampMap().size());
+        cell.setCellValue("内灯");
+        cell.setCellStyle(styleTitle2);
+
+
+        XSSFCellStyle styleTitle3 = wb.createCellStyle();
+        styleTitle3.setAlignment(HSSFCellStyle.ALIGN_CENTER);//水平居中
+        styleTitle3.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);//垂直居中
+        styleTitle3.setFillBackgroundColor(HSSFColor.DARK_RED.index);
+        craTitle = new CellRangeAddress(0, 0, index + lampList.get(0).getHeadLampMap().size() + lampList.get(0).getInnerLampmap().size(),
+                index + lampList.get(0).getHeadLampMap().size() + lampList.get(0).getHeadLampMap().size() +  + lampList.get(0).getOuterLampMap().size() - 1);
+        sheet.addMergedRegion(craTitle);
+        cell = rowTitle.createCell(index + lampList.get(0).getHeadLampMap().size() + lampList.get(0).getInnerLampmap().size());
+        cell.setCellValue("外灯");
+        cell.setCellStyle(styleTitle3);
+
+
+        rowTitle = sheet.createRow(1);
 
         // 创建标题栏样式
         XSSFCellStyle styleTitle = wb.createCellStyle();
@@ -68,7 +108,6 @@ public class ExcelUtil {
         cellTitle.setCellStyle(styleTitle);
 
 
-        int index = 2;
         for(Map.Entry<String, String> headEntry : lampList.get(0).getHeadLampMap().entrySet()){
             cellTitle = rowTitle.createCell(index++);
             cellTitle.setCellValue(headEntry.getKey());
@@ -84,15 +123,6 @@ public class ExcelUtil {
             cellTitle.setCellValue(outerEntry.getKey());
             cellTitle.setCellStyle(styleTitle);
         }
-
-
-        cellTitle = rowTitle.createCell(2);
-        cellTitle.setCellValue("lampName");
-        cellTitle.setCellStyle(styleTitle);
-
-        cellTitle = rowTitle.createCell(3);
-        cellTitle.setCellValue("lampDesc");
-        cellTitle.setCellStyle(styleTitle);
 
 
         XSSFCellStyle styleCenter = wb.createCellStyle();
@@ -112,7 +142,7 @@ public class ExcelUtil {
             LampExcelBean item = lampList.get(i);
             XSSFRow row = sheet.createRow(i + headRow);
 
-            XSSFCell cell = row.createCell(0);
+            cell = row.createCell(0);
             if(i != 0 && item.getModel().equals(lampList.get(i - 1).getModel())){
                 cell.setCellValue("");
             }else{
@@ -132,6 +162,7 @@ public class ExcelUtil {
                 cell.setCellValue(item.getModel());
             }
             cell.setCellStyle(styleCenter);
+            sheet.autoSizeColumn(0);
 
 
             cell = row.createCell(1);
@@ -154,23 +185,28 @@ public class ExcelUtil {
                 cell.setCellValue(item.getType());
             }
             cell.setCellStyle(styleCenter);
+            sheet.autoSizeColumn(1);
 
             int col = 2;
             for(Map.Entry<String, String> headEntry : item.getHeadLampMap().entrySet()){
                 cell = row.createCell(col++);
                 cell.setCellValue(headEntry.getValue());
                 cell.setCellStyle(styleCenter);
+                sheet.autoSizeColumn(col);
             }
             for(Map.Entry<String, String> innerEntry : item.getInnerLampmap().entrySet()){
                 cell = row.createCell(col++);
                 cell.setCellValue(innerEntry.getValue());
                 cell.setCellStyle(styleCenter);
+                sheet.autoSizeColumn(col);
             }
             for(Map.Entry<String, String> outerEntry : item.getOuterLampMap().entrySet()){
                 cell = row.createCell(col++);
                 cell.setCellValue(outerEntry.getValue());
                 cell.setCellStyle(styleCenter);
+                sheet.autoSizeColumn(col);
             }
+
 
         }
 

@@ -81,9 +81,12 @@ public class ExcelServer {
 
             for(TypeBean type : typeList){
 
-                Map<String, String> headLampMap = lampTitleData.get("headLampMap");
-                Map<String, String> innerLampmap = lampTitleData.get("innerLampmap");
-                Map<String, String> outerLampMap = lampTitleData.get("outerLampMap");
+                Map<String, String> headLampMap = new TreeMap<>();
+                headLampMap.putAll(lampTitleData.get("headLampMap"));
+                Map<String, String> innerLampmap = new TreeMap<>();
+                innerLampmap.putAll(lampTitleData.get("innerLampmap"));
+                Map<String, String> outerLampMap = new TreeMap<>();
+                outerLampMap.putAll(lampTitleData.get("outerLampMap"));
 
                 LampExcelBean lampExcelBean = new LampExcelBean();
                 lampExcelBean.setManufacturer(manufacturerBean.getManufacturerName());
