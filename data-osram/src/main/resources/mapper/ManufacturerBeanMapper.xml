@@ -14,7 +14,7 @@
     from t_manufacturer
     where manufacturer_id = #{manufacturerId,jdbcType=INTEGER}
   </select>
-    <select id="findAll" resultType="com.sealight.osram.entity.ManufacturerBean">
+    <select id="findAll" resultMap="BaseResultMap">
 
       select
       <include refid="Base_Column_List" />
