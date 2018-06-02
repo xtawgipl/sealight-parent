@@ -38,9 +38,9 @@
     select
     <include refid="Base_Column_List" />
     from t_light_infos
-    where typeId = #{type_id,jdbcType=VARCHAR}
-    and useId = #{use_id,jdbcType=VARCHAR}
-    and technologyId = #{technology_id,jdbcType=VARCHAR}
+    where type_id = #{typeId,jdbcType=VARCHAR}
+    and use_id = #{useId,jdbcType=VARCHAR}
+    and technology_id = #{technologyId,jdbcType=VARCHAR} limit 0, 1
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from t_light_infos

@@ -33,8 +33,14 @@
     where typeId = #{type_id,jdbcType=VARCHAR}
 
   </select>
+    <select id="findByType" resultMap="BaseResultMap">
+      select
+      <include refid="Base_Column_List" />
+      from t_light
+      where type_id = #{typeId,jdbcType=VARCHAR}
+    </select>
 
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from t_light
     where id = #{id,jdbcType=INTEGER}
   </delete>

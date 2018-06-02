@@ -1,6 +1,9 @@
 package com.sealight.osram.mapper;
 
 import com.sealight.osram.entity.ModelBean;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface ModelBeanMapper {
     int deleteByPrimaryKey(Integer modelId);
@@ -14,4 +17,6 @@ public interface ModelBeanMapper {
     int updateByPrimaryKeySelective(ModelBean record);
 
     int updateByPrimaryKey(ModelBean record);
+
+    List<ModelBean> findByManufacturer(@Param("manufacturerId") Integer manufacturerId);
 }

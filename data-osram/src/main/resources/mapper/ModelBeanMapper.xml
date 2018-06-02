@@ -15,7 +15,13 @@
     from t_model
     where model_id = #{modelId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <select id="findByManufacturer" resultMap="BaseResultMap">
+      select 'true' as QUERYID,
+      <include refid="Base_Column_List" />
+      from t_model
+      where manufacturer_id = #{manufacturerId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from t_model
     where model_id = #{modelId,jdbcType=INTEGER}
   </delete>

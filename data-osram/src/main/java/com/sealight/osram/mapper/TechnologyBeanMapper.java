@@ -22,4 +22,6 @@ public interface TechnologyBeanMapper {
     TechnologyBean findByKeys(@Param("typeId") String typeId, @Param("useId") String useId, @Param("technologyId") String technologyId);
 
     List<TechnologyBean> findByTypeUse(@Param("typeId") String typeId, @Param("useId") String useId);
+
+    List<TechnologyBean> findByUseByType(@Param("typeId") Integer typeId, @Param("useId") Integer useId);
 }

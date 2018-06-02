@@ -78,6 +78,7 @@
 	</appender>
 
 	<logger name="org.mybatis" level="info" />
+	<logger name="com.sealight" level="debug" />
 
 	<root level="info">
 		<appender-ref ref="CONSOLE" />

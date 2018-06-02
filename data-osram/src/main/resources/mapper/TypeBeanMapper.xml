@@ -31,8 +31,15 @@
   <select id="countAll" resultType="java.lang.Integer">
     select count(*) from t_type
   </select>
+    <select id="findByModel" resultMap="BaseResultMap">
+      select
+      <include refid="Base_Column_List" />
+      from t_type
+      where model_id = #{modelId,jdbcType=INTEGER}
 
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from t_type
     where type_id = #{typeId,jdbcType=INTEGER}
   </delete>

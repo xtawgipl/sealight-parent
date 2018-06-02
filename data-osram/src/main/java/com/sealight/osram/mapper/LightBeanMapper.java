@@ -22,4 +22,6 @@ public interface LightBeanMapper {
     LightBean findByKeys(@Param("typeId") String typeId, @Param("useId") String useId, @Param("posId") String posId);
 
     List<LightBean> selectByType(@Param("typeId") String typeId);
+
+    List<LightBean> findByType(@Param("typeId") Integer typeId);
 }

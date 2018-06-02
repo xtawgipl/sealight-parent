@@ -1,6 +1,9 @@
 package com.sealight.osram.mapper;
 
 import com.sealight.osram.entity.TypeBean;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface TypeBeanMapper {
     int deleteByPrimaryKey(Integer typeId);
@@ -17,4 +20,6 @@ public interface TypeBeanMapper {
 
 
     int countAll();
+
+    List<TypeBean> findByModel(@Param("modelId") Integer modelId);
 }

@@ -29,11 +29,18 @@
     select
     <include refid="Base_Column_List" />
     from t_technology
-    where typeId = #{type_id,jdbcType=VARCHAR}
-    and useId = #{use_id,jdbcType=VARCHAR}
+    where type_id = #{typeId,jdbcType=VARCHAR}
+    and use_id = #{useId,jdbcType=VARCHAR}
 
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <select id="findByUseByType" resultMap="BaseResultMap">
+      select
+      <include refid="Base_Column_List" />
+      from t_technology
+      where type_id = #{typeId,jdbcType=VARCHAR}
+      and use_id = #{useId,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from t_technology
     where id = #{id,jdbcType=INTEGER}
   </delete>

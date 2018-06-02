@@ -1,5 +1,9 @@
 package com.sealight.osram.load;
 
+import com.sealight.osram.entity.ManufacturerBean;
+import com.sealight.osram.excel.ExcelUtil;
+import com.sealight.osram.mapper.ManufacturerBeanMapper;
+import com.sealight.osram.service.ExcelServer;
 import com.sealight.osram.service.FecthService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,10 +26,20 @@ public class Loader implements CommandLineRunner {
     @Resource(name = "fecthService")
     private FecthService fecthService;
 
+    @Resource(name = "excelServer")
+    private ExcelServer excelServer;
+
+    @Resource(name = "manufacturerBeanMapper")
+    private ManufacturerBeanMapper manufacturerBeanMapper;
+
     @Override
     public void run(String... args) throws Exception {
         logger.info("---------start------------------");
-        fecthService.fetchData();
+//        fecthService.fetchData();
+
+        ManufacturerBean manufacturerBean = manufacturerBeanMapper.selectByPrimaryKey(1);
+        ExcelUtil.excelExport(manufacturerBean.getManufacturerName(), excelServer.getLampExcelList(manufacturerBean));
+        logger.info("---------end------------------");
     }
 
 }
