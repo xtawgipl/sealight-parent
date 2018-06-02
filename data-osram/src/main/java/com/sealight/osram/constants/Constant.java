@@ -17,7 +17,7 @@ public class Constant {
 
 
     //获取所有品牌如 BMW等
-    public final static String ALL_MANUFACTURER_URL = "https://am-application.osram.info/en/getAllManufacturer/2.json";
+    public final static String ALL_MANUFACTURER_URL = "https://am-application.osram.info/en/getAllManufacturer/1.json";
 
     //获取品牌的所有系列(型号),如 BMW的 x5 x6等
     //占位符为品牌的id,如BMW的品牌id为6;

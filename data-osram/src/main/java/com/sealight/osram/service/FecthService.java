@@ -76,7 +76,7 @@ public class FecthService {
                                     executorService.submit(new Runnable() {
                                         @Override
                                         public void run() {
-                                            fetchLight(typeUrl);
+                                            fetchLight(typeUrl, manufacturerBean, modelBean);
                                         }
                                     });
                                 }else{
@@ -144,10 +144,17 @@ public class FecthService {
     }
 
 
-    private void fetchLight(String typeUrl){
+    private void fetchLight(String typeUrl, ManufacturerBean manufacturerBean, ModelBean modelBean){
         JSONObject typeJson = URLFetcher.pickDataJSON(typeUrl);
         if(typeJson.getInteger("error") == 0){
             JSONArray typeArrayJson = typeJson.getJSONArray("result");
+            if(typeArrayJson.size() < 2){
+                logger.warn(String.format("manufacturer = %s[%s] , mode = %s[%s] ; type size [%s] : %s",
+                        manufacturerBean.getManufacturerName(),
+                        manufacturerBean.getManufacturerId(),
+                        modelBean.getModelName(),modelBean.getModelId(),
+                        typeArrayJson.size(), typeUrl));
+            }
             for(int j = 0; j < typeArrayJson.size(); ++j){
                 JSONObject typeOjbectJson = typeArrayJson.getJSONObject(j);
                 String typeFrom = typeOjbectJson.getString("type_from");
