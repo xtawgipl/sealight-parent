@@ -79,6 +79,11 @@ public class ExcelServer {
         for(ModelBean model : modelList){
             List<TypeBean> typeList = typeBeanMapper.findByModel(model.getModelId());
 
+            if(typeList == null || typeList.isEmpty()){
+                log.warn("model 没有数据： {}[{}] : {}[{}]", model.getManufacturerId(), manufacturerBean.getManufacturerName(),
+                        model.getModelId(), model.getModelName());
+            }
+
             for(TypeBean type : typeList){
 
                 Map<String, String> headLampMap = new TreeMap<>();

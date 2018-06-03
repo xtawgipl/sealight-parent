@@ -2,6 +2,7 @@ package com.sealight.osram.excel;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.Map;
 
@@ -11,6 +12,7 @@ import java.util.Map;
  **/
 @Setter
 @Getter
+@ToString
 public class LampExcelBean {
 
     private String manufacturer;

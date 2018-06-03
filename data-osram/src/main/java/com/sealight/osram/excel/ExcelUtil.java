@@ -1,6 +1,8 @@
 package com.sealight.osram.excel;
 
 import com.sealight.osram.constants.Constant;
+import com.sun.media.jfxmedia.logging.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.util.HSSFColor;
@@ -18,6 +20,7 @@ import java.util.Map;
  * @author zhangjj
  * @create 2017-12-11 21:25
  **/
+@Slf4j
 public class ExcelUtil {
 
     public static void excelExport(String sheelName, List<LampExcelBean> lampList) {
@@ -32,23 +35,26 @@ public class ExcelUtil {
 
         // 创建sheet
         XSSFSheet sheet = wb.createSheet(sheelName);
-//        sheet.setDefaultColumnWidth(10);
+        sheet.setDefaultColumnWidth(10);
         sheet.setDefaultRowHeight((short) 600);
 
 
 
         XSSFRow rowTitle = sheet.createRow(0);
 
-
-        XSSFCellStyle styleTitle1 = wb.createCellStyle();
-        styleTitle1.setAlignment(HSSFCellStyle.ALIGN_CENTER);//水平居中
-        styleTitle1.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);//垂直居中
-        styleTitle1.setFillBackgroundColor(HSSFColor.DARK_BLUE.index);
-        CellRangeAddress craTitle = new CellRangeAddress(0, 0, index, index + lampList.get(0).getHeadLampMap().size() - 1);
-        sheet.addMergedRegion(craTitle);
-        XSSFCell cell = rowTitle.createCell(index);
-        cell.setCellValue("前灯");
-        cell.setCellStyle(styleTitle1);
+        CellRangeAddress craTitle = null;
+        XSSFCell cell = null;
+        if(lampList != null && !lampList.isEmpty()){
+            XSSFCellStyle styleTitle1 = wb.createCellStyle();
+            styleTitle1.setAlignment(HSSFCellStyle.ALIGN_CENTER);//水平居中
+            styleTitle1.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);//垂直居中
+            styleTitle1.setFillBackgroundColor(HSSFColor.DARK_BLUE.index);
+            craTitle = new CellRangeAddress(0, 0, index, index + lampList.get(0).getHeadLampMap().size() - 1);
+            sheet.addMergedRegion(craTitle);
+            cell = rowTitle.createCell(index);
+            cell.setCellValue("前灯");
+            cell.setCellStyle(styleTitle1);
+        }
 
         XSSFCellStyle styleTitle2 = wb.createCellStyle();
         styleTitle2.setAlignment(HSSFCellStyle.ALIGN_CENTER);//水平居中
@@ -138,15 +144,18 @@ public class ExcelUtil {
         int rowStart1 = headRow;//合并单元格的行起始index
         // 取数据
         int i = 0;
-        for (; i < lampList.size(); i++) {
-            LampExcelBean item = lampList.get(i);
-            XSSFRow row = sheet.createRow(i + headRow);
+        try {
+            for (; i < lampList.size(); i++) {
+                System.out.println("i = " + i);
 
-            cell = row.createCell(0);
-            if(i != 0 && item.getModel().equals(lampList.get(i - 1).getModel())){
-                cell.setCellValue("");
-            }else{
-                if(rowStart < i + headRow){
+                LampExcelBean item = lampList.get(i);
+                XSSFRow row = sheet.createRow(i + headRow);
+
+                cell = row.createCell(0);
+                if(i != 0 && item.getModel().equals(lampList.get(i - 1).getModel())){
+                    cell.setCellValue("");
+                }else{
+                    if(rowStart < i + headRow){
                     /*
                      * 设定合并单元格区域范围
                      *  firstRow  0-based
@@ -154,22 +163,21 @@ public class ExcelUtil {
                      *  firstCol  0-based
                      *  lastCol   0-based
                      */
-                    cra = new CellRangeAddress(rowStart, i + headRow - 1, 0, 0);
-                    //在sheet里增加合并单元格
-                    sheet.addMergedRegion(cra);
-                    rowStart = i + headRow;
+                        cra = new CellRangeAddress(rowStart, i + headRow - 1, 0, 0);
+                        //在sheet里增加合并单元格
+                        sheet.addMergedRegion(cra);
+                        rowStart = i + headRow;
+                    }
+                    cell.setCellValue(item.getModel());
                 }
-                cell.setCellValue(item.getModel());
-            }
-            cell.setCellStyle(styleCenter);
-            sheet.autoSizeColumn(0);
+                cell.setCellStyle(styleCenter);
 
 
-            cell = row.createCell(1);
-            if(i != 0 && item.getType().equals(lampList.get(i - 1).getType())){
-                cell.setCellValue("");
-            }else{
-                if(rowStart1 < i + headRow){
+                cell = row.createCell(1);
+                if(i != 0 && item.getType().equals(lampList.get(i - 1).getType())){
+                    cell.setCellValue("");
+                }else{
+                    if(rowStart1 < i + headRow){
                     /*
                      * 设定合并单元格区域范围
                      *  firstRow  0-based
@@ -177,37 +185,35 @@ public class ExcelUtil {
                      *  firstCol  0-based
                      *  lastCol   0-based
                      */
-                    cra = new CellRangeAddress(rowStart1, i + headRow - 1, 1, 1);
-                    //在sheet里增加合并单元格
-                    sheet.addMergedRegion(cra);
-                    rowStart1 = i + headRow;
+                        cra = new CellRangeAddress(rowStart1, i + headRow - 1, 1, 1);
+                        //在sheet里增加合并单元格
+                        sheet.addMergedRegion(cra);
+                        rowStart1 = i + headRow;
+                    }
+                    cell.setCellValue(item.getType());
                 }
-                cell.setCellValue(item.getType());
-            }
-            cell.setCellStyle(styleCenter);
-            sheet.autoSizeColumn(1);
-
-            int col = 2;
-            for(Map.Entry<String, String> headEntry : item.getHeadLampMap().entrySet()){
-                cell = row.createCell(col++);
-                cell.setCellValue(headEntry.getValue());
                 cell.setCellStyle(styleCenter);
-                sheet.autoSizeColumn(col);
-            }
-            for(Map.Entry<String, String> innerEntry : item.getInnerLampmap().entrySet()){
-                cell = row.createCell(col++);
-                cell.setCellValue(innerEntry.getValue());
-                cell.setCellStyle(styleCenter);
-                sheet.autoSizeColumn(col);
-            }
-            for(Map.Entry<String, String> outerEntry : item.getOuterLampMap().entrySet()){
-                cell = row.createCell(col++);
-                cell.setCellValue(outerEntry.getValue());
-                cell.setCellStyle(styleCenter);
-                sheet.autoSizeColumn(col);
-            }
 
-
+                int col = 2;
+                for(Map.Entry<String, String> headEntry : item.getHeadLampMap().entrySet()){
+                    cell = row.createCell(col++);
+                    cell.setCellValue(headEntry.getValue());
+                    cell.setCellStyle(styleCenter);
+                }
+                for(Map.Entry<String, String> innerEntry : item.getInnerLampmap().entrySet()){
+                    cell = row.createCell(col++);
+                    cell.setCellValue(innerEntry.getValue());
+                    cell.setCellStyle(styleCenter);
+                }
+                for(Map.Entry<String, String> outerEntry : item.getOuterLampMap().entrySet()){
+                    cell = row.createCell(col++);
+                    cell.setCellValue(outerEntry.getValue());
+                    cell.setCellStyle(styleCenter);
+                }
+            }
+        }catch (Throwable e){
+            e.printStackTrace();
+            log.error("", e);
         }
 
         if(rowStart < i + headRow){
@@ -236,7 +242,6 @@ public class ExcelUtil {
             sheet.addMergedRegion(cra);
         }
 
-        sheet.autoSizeColumn(3);
         FileOutputStream fout = null;
         try {
             fout = new FileOutputStream(Constant.EXCEL_PATH + sheelName+".xlsx");

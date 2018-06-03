@@ -19,4 +19,6 @@ public interface ModelBeanMapper {
     int updateByPrimaryKey(ModelBean record);
 
     List<ModelBean> findByManufacturer(@Param("manufacturerId") Integer manufacturerId);
+
+    List<ModelBean> findAll();
 }

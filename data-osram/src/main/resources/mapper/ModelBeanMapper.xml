@@ -21,6 +21,11 @@
       from t_model
       where manufacturer_id = #{manufacturerId,jdbcType=INTEGER}
     </select>
+    <select id="findAll" resultMap="BaseResultMap">
+      select
+      <include refid="Base_Column_List" />
+      from t_model
+    </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from t_model
     where model_id = #{modelId,jdbcType=INTEGER}

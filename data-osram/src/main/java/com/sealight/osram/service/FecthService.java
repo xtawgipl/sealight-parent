@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -101,6 +102,28 @@ public class FecthService {
     }
 
 
+    public void fetchDataByModel(){
+
+        List<ModelBean> modelList = modelBeanMapper.findAll();
+        for(final ModelBean model : modelList){
+            List<TypeBean> typeList = typeBeanMapper.findByModel(model.getModelId());
+            if(typeList == null || typeList.isEmpty()){
+                executorService.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        String typeUrl = String.format(Constant.ALL_TYPE_URL, model.getModelId());
+                        fetchLight(typeUrl, manufacturerBeanMapper.selectByPrimaryKey(model.getManufacturerId()), model);
+                    }
+                });
+            }
+        }
+
+
+
+
+    }
+
+
     private void fetchlamps(TechnologyBean technologyBean){
         technologyBeanMapper.insert(technologyBean);
 
@@ -145,6 +168,7 @@ public class FecthService {
 
 
     private void fetchLight(String typeUrl, ManufacturerBean manufacturerBean, ModelBean modelBean){
+
         JSONObject typeJson = URLFetcher.pickDataJSON(typeUrl);
         if(typeJson.getInteger("error") == 0){
             JSONArray typeArrayJson = typeJson.getJSONArray("result");
@@ -161,8 +185,8 @@ public class FecthService {
                 String typeFromYear = typeFrom.substring(0, 4);
                 String typeFromMonth = typeFrom.substring(4, 6);
                 String typeTo = typeOjbectJson.getString("type_to");
-                String typeToYear = typeTo.substring(0, 4);
-                String typeToMonth = typeTo.substring(4, 6);
+                String typeToYear = typeTo.equals("0") ? "" : typeTo.substring(0, 4);
+                String typeToMonth = typeTo.equals("0") ? "" : typeTo.substring(4, 6);
                 TypeBean typeBean = new TypeBean(typeOjbectJson.getInteger("type_id"),
                         typeOjbectJson.getInteger("model_id"),
                         typeFrom,
